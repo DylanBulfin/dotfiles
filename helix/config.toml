@@ -1,0 +1,12 @@
+[editor]
+line-number = "relative"
+mouse = false
+middle-click-paste = false
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.insert] 
+"C-a" = "normal_mode"
+# k = { j = "normal_mode" }
