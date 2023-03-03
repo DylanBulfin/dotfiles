@@ -7,6 +7,11 @@ bufferline = "multiple"
 [editor.cursor-shape]
 insert = "bar"
 
+[editor.soft-wrap]
+enable = true
+max-wrap = 25
+max-indent-retain = 30
+
 [keys.insert] 
 "C-a" = "normal_mode"
 # k = { j = "normal_mode" }
