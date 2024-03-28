@@ -219,14 +219,10 @@ bindsym $mod+r mode "resize"
 #
 # Screenshots
 #
-    bindsym print exec grimshot --notify copy output
+    bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
     bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
-
     bindsym $mod+Shift+s exec grimshot copy area
 #
 # Keybindings List
 #
     bindsym $mod+t exec xed ~/.config/sway/cheatsheet
-
-bindsym $mod+F4 exec "brightnessctl s 10%-"
-bindsym $mod+F5 exec "brightnessctl s +10%"

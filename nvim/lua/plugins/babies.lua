@@ -25,5 +25,21 @@ return {
   },
   { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons", opts = {} },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-  { "nanotee/zoxide.vim" },
+  {
+    "nanotee/zoxide.vim",
+    dependencies = {
+      "junegunn/fzf",
+      "junegunn/fzf.vim",
+    },
+    config = function()
+      vim.keymap.set("n", "<leader>fz", "<Cmd>Zi<CR>", { desc = "Search with zoxide", silent = true })
+    end,
+  },
+  {
+    "echasnovski/mini.comment",
+    version = false,
+    config = function()
+      require("mini.comment").setup()
+    end,
+  },
 }

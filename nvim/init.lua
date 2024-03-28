@@ -46,4 +46,11 @@ vim.opt.listchars = {
   nbsp = "",
 }
 
+-- Misc keybindings I like
+vim.keymap.set("n", "<leader>[", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<leader>]", "<Cmd>bprev<CR>", { desc = "Next buffer", silent = true })
+
+vim.keymap.set("n", "<leader>n", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<leader>p", "<Cmd>bprev<CR>", { desc = "Next buffer", silent = true })
+
 require("lazy").setup("plugins")

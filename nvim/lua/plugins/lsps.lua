@@ -40,11 +40,17 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
       -- Rust
       lspconfig.rust_analyzer.setup({
         settings = {
           ["rust-analyer"] = {},
         },
+        capabilities = capabilities,
       })
       -- Lua
       lspconfig.lua_ls.setup({
@@ -60,6 +66,9 @@ return {
               -- (most likely LuaJIT in the case of Neovim)
               version = "LuaJIT",
             },
+            diagnostics = {
+              globals = { "vim", "require" },
+            },
             -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
@@ -72,10 +81,12 @@ return {
         settings = {
           Lua = {},
         },
+        capabilities = capabilities,
       })
       -- Haskell
       lspconfig.hls.setup({
         filetypes = { "haskell", "lhaskell", "cabal" },
+        capabilities = capabilities,
       })
     end,
   },
