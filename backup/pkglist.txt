@@ -143,7 +143,6 @@ nss-mdns
 ntfs-3g
 ntp
 numlockx
-obs-studio
 openssh
 otf-font-awesome
 pacman-contrib
