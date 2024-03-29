@@ -48,9 +48,24 @@ vim.opt.listchars = {
 
 -- Misc keybindings I like
 vim.keymap.set("n", "<leader>[", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<leader>]", "<Cmd>bprev<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<leader>]", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
-vim.keymap.set("n", "<leader>n", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<leader>p", "<Cmd>bprev<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<leader>N", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<leader>n", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
+
+vim.keymap.set("v", "<leader>y", function()
+  vim.cmd.normal('"+y')
+end, { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<leader>yy", function()
+  vim.cmd.normal('"+' .. vim.v.count .. "yy")
+end, { desc = "Yank to system clipboard" })
+
+vim.keymap.set("n", "<leader>p", function()
+  vim.cmd.normal('"+p')
+end, { desc = "Paste from system clipboard" })
+
+vim.keymap.set("n", "<leader>P", function()
+  vim.cmd.normal('"+P')
+end, { desc = "Paste from system clipboard" })
 
 require("lazy").setup("plugins")
