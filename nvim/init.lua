@@ -60,9 +60,11 @@ vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer"
 vim.keymap.set("v", "<leader>y", function()
   vim.cmd.normal('"+y')
 end, { desc = "Yank to system clipboard" })
-vim.keymap.set("n", "<leader>yy", function()
-  vim.cmd.normal('"+' .. vim.v.count .. "yy")
-end, { desc = "Yank to system clipboard" })
+
+-- Doesn't work unless i make it a function``
+vim.keymap.set("n", "<leader>y", function()
+  return '"+y'
+end, { expr = true, desc = "Yank to system clipboard" })
 
 vim.keymap.set("n", "<leader>p", function()
   vim.cmd.normal('"+p')

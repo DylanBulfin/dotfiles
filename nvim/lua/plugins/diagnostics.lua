@@ -23,9 +23,9 @@ return {
             if curr then
               vim.diagnostic.config({ virtual_text = false })
             else
-              vim.diagnostic.config({ virtual_text = false })
+              vim.diagnostic.config({ virtual_text = true })
             end
-          end)
+          end, { desc = "Disable inline diagnostics" })
 
           require("statuscol").setup({
             ft_ignore = { "trouble" },
@@ -70,13 +70,13 @@ return {
       end, { desc = "Toggle Trouble" })
       vim.keymap.set("n", "<leader>xw", function()
         require("trouble").toggle("workspace_diagnostics")
-      end, { desc = "Toggle Workspace Diagnostics" })
+      end, { desc = "Toggle workspace diagnostics" })
       vim.keymap.set("n", "<leader>xd", function()
         require("trouble").toggle("document_diagnostics")
-      end, { desc = "Toggle Document Diagnostics" })
+      end, { desc = "Toggle document diagnostics" })
       vim.keymap.set("n", "<leader>xq", function()
         require("trouble").toggle("quickfix")
-      end, { desc = "Toggle Quickfix" })
+      end, { desc = "Toggle quickfix" })
     end,
   },
 }
