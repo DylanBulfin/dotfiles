@@ -14,8 +14,18 @@ return {
           -- Add icons for statuscol diagnostics
           vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
           vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-          vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+          vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
           vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
+          -- Disable inline diagnostics via virtual text
+          vim.keymap.set("n", "<leader>xi", function()
+            local curr = vim.diagnostic.config().virtual_text
+            if curr then
+              vim.diagnostic.config({ virtual_text = false })
+            else
+              vim.diagnostic.config({ virtual_text = false })
+            end
+          end)
 
           require("statuscol").setup({
             ft_ignore = { "trouble" },
@@ -50,8 +60,11 @@ return {
   },
   {
     "folke/trouble.nvim",
-    opts = {},
-    config = function(opts)
+    opts = {
+      icons = false,
+      use_diagnostic_signs = true,
+    },
+    config = function()
       vim.keymap.set("n", "<leader>xx", function()
         require("trouble").toggle()
       end, { desc = "Toggle Trouble" })

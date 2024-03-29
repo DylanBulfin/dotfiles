@@ -47,12 +47,16 @@ vim.opt.listchars = {
 }
 
 -- Misc keybindings I like
+-- Buffer management
 vim.keymap.set("n", "<leader>[", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>]", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
 vim.keymap.set("n", "<leader>N", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>n", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
+vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
+
+-- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
   vim.cmd.normal('"+y')
 end, { desc = "Yank to system clipboard" })
