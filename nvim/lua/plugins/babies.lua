@@ -36,5 +36,10 @@ return {
       vim.keymap.set("n", "<leader>fz", "<Cmd>Zi<CR>", { desc = "Search with zoxide", silent = true })
     end,
   },
-  { "rcarriga/nvim-notify" },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end,
+  },
 }

@@ -64,8 +64,8 @@ return {
   },
   {
     "folke/trouble.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
-      icons = false,
       use_diagnostic_signs = true, -- Makes sure trouble is in sync with other diagnostics sign users
     },
     config = function()

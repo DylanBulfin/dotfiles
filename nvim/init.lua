@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Set options
 local opt = vim.opt
+opt.hidden = true -- probably don't need to set this manually but doing it anyway
 opt.number = true
 opt.relativenumber = true
 opt.expandtab = true
@@ -78,19 +79,26 @@ local to_one_window = function()
   for key, value in pairs(vim.api.nvim_tabpage_list_wins(0)) do
     -- Only keep the first window, which is the top left one by default
     if key ~= 1 then
-      vim.api.nvim_win_close(value, true)
+      if vim.api.nvim_win_is_valid(value) then
+        vim.api.nvim_win_close(value, true)
+      end
     end
   end
 end
 
--- Close all except main window on current tabpage
-vim.keymap.set("n", "<C-w>a", to_one_window, { noremap = false })
+-- Close all except main window on current tabpage (insert mode mapping for telescope)
+vim.keymap.set({ "n", "i" }, "<C-w>a", to_one_window, { noremap = false })
 vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false })
 
 -- Alias <leader>w to <C-w> bc I think it's more ergonomic (breaks which-key tho)
 vim.keymap.set("n", "<leader>w", function()
   return "<C-w>"
 end, { expr = true, desc = "+windows" })
+
+-- In terminal mode let <Esc> do what it's supposed to
+vim.keymap.set("t", "<Esc>", function()
+  return "<C-\\><C-n>"
+end, { expr = true, desc = "Exit terminal mode" })
 
 require("lazy").setup({
   spec = {

@@ -7,10 +7,12 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnosti
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
+local group = vim.api.nvim_create_augroup("UserLspConfig", {})
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  group = group,
   callback = function(ev)
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -100,10 +102,40 @@ return {
         },
         capabilities = capabilities,
       })
-      -- Haskell
-      lspconfig.hls.setup({
-        filetypes = { "haskell", "lhaskell", "cabal" },
-        capabilities = capabilities,
+    end,
+  },
+  -- haskell-tools sets up hls so no need to set it above
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^3", -- Recommended
+    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+    init = function()
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = group,
+        callback = function(ev)
+          if vim.fn.getbufvar(ev.buf, "&filetype") ~= "haskell" then
+            return
+          end
+          local opts = function(desc)
+            return { buffer = ev.buf, desc = desc, silent = true }
+          end
+
+          local ht = require("haskell-tools")
+          -- haskell-language-server relies heavily on codeLenses,
+          -- so auto-refresh (see advanced configuration) is enabled by default
+          vim.keymap.set("n", "<space>lc", vim.lsp.codelens.run, opts("Run codelens"))
+          -- Hoogle search for the type signature of the definition under the cursor
+          vim.keymap.set("n", "<space>lh", ht.hoogle.hoogle_signature, opts("Hoogle type signature"))
+          -- Evaluate all code snippets
+          vim.keymap.set("n", "<space>le", ht.lsp.buf_eval_all, opts("Evaluate all code snippets"))
+          -- Toggle a GHCi repl for the current package
+          vim.keymap.set("n", "<leader>lr", ht.repl.toggle, opts("Toggle GHCi"))
+          -- Toggle a GHCi repl for the current buffer
+          vim.keymap.set("n", "<leader>lb", function()
+            ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+          end, opts("Toggle GHCi for buffer"))
+          vim.keymap.set("n", "<leader>lq", ht.repl.quit, opts("Quit GHCi"))
+        end,
       })
     end,
   },
