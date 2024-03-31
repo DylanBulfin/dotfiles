@@ -17,7 +17,7 @@ return {
           vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
           vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
-          -- Disable inline diagnostics via virtual text
+          -- Disable inline diagnostics via virtual_text setting
           vim.keymap.set("n", "<leader>xi", function()
             local curr = vim.diagnostic.config().virtual_text
             if curr then
@@ -25,7 +25,10 @@ return {
             else
               vim.diagnostic.config({ virtual_text = true })
             end
-          end, { desc = "Disable inline diagnostics" })
+          end, { desc = "Toggle inline diagnostics" })
+
+          -- Force highest severity to display over others
+          vim.diagnostic.config({ severity_sort = true })
 
           require("statuscol").setup({
             ft_ignore = { "trouble" },
@@ -47,6 +50,7 @@ return {
       },
     },
     config = function()
+      -- Required setup for ufo
       vim.o.foldcolumn = "1"
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
@@ -62,7 +66,7 @@ return {
     "folke/trouble.nvim",
     opts = {
       icons = false,
-      use_diagnostic_signs = true,
+      use_diagnostic_signs = true, -- Makes sure trouble is in sync with other diagnostics sign users
     },
     config = function()
       vim.keymap.set("n", "<leader>xx", function()

@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+vim.g.mapleader = " " -- Space as leader
 vim.g.maplocalleader = "\\"
 
 -- Lazy setup, leave alone
@@ -61,7 +61,7 @@ vim.keymap.set("v", "<leader>y", function()
   vim.cmd.normal('"+y')
 end, { desc = "Yank to system clipboard" })
 
--- Doesn't work unless i make it a function``
+-- Basically acts as an alias, <space>y can be used in place of "+y, including with motions/textobjectss
 vim.keymap.set("n", "<leader>y", function()
   return '"+y'
 end, { expr = true, desc = "Yank to system clipboard" })
@@ -74,4 +74,30 @@ vim.keymap.set("n", "<leader>P", function()
   vim.cmd.normal('"+P')
 end, { desc = "Paste from system clipboard" })
 
-require("lazy").setup("plugins")
+local to_one_window = function()
+  for key, value in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+    -- Only keep the first window, which is the top left one by default
+    if key ~= 1 then
+      vim.api.nvim_win_close(value, true)
+    end
+  end
+end
+
+-- Close all except main window on current tabpage
+vim.keymap.set("n", "<C-w>a", to_one_window, { noremap = false })
+vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false })
+
+-- Alias <leader>w to <C-w> bc I think it's more ergonomic (breaks which-key tho)
+vim.keymap.set("n", "<leader>w", function()
+  return "<C-w>"
+end, { expr = true, desc = "+windows" })
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  -- checker = {
+  --   enabled = true,
+  --   notify = true,
+  -- },
+})

@@ -1,21 +1,99 @@
+local general = vim.api.nvim_create_augroup("General", { clear = true })
+-- By default nvim will try to continue comments on next line, very annoying to me
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+  group = general,
+  desc = "Disable newline comment",
+})
+
+-- Backup current state of disable_autoformat, then set it to true
+-- It is incredibly irritating when autosave also formats but I don't want to disable entirely
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AutoSaveWritePre",
+  callback = function()
+    vim.g.disable_autoformat_prev = vim.g.disable_autoformat
+    vim.g.disable_autoformat = true
+  end,
+  group = general,
+  desc = "Disable format during autosave",
+})
+-- Restore former state
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AutoSaveWritePost",
+  callback = function()
+    vim.g.disable_autoformat = vim.g.disable_autoformat_prev
+  end,
+  group = general,
+  desc = "Disable format during autosave",
+})
+
+vim.g.disable_autoformat = false
+vim.keymap.set("n", "<leader>tf", function()
+  if vim.g.disable_autoformat then
+    vim.g.disable_autoformat = false
+  else
+    vim.g.disable_autoformat = true
+  end
+end, { desc = "Toggle format-on-save" })
+
 return {
-    {
-        "stevearc/conform.nvim",
-        config = function()
-            local conform = require("conform")
-            conform.setup({
-                formatters_by_ft = {
-                    lua = { "stylua" },
-                },
-                format_on_save = {
-                    lsp_fallback = true,
-                },
-                formatters = {
-                    stylua = {
-                        prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
-                    },
-                },
-            })
+  {
+    "stevearc/conform.nvim",
+    config = function()
+      local conform = require("conform")
+      conform.setup({
+        -- Mostly defaults work
+        formatters_by_ft = {
+          lua = { "stylua" },
+        },
+        -- When function returns nil format on save is disabled
+        format_on_save = function()
+          if vim.g.disable_autoformat then
+            return
+          end
+          return { timeout_ms = 500, lsp_fallback = true }
         end,
+        formatters = {
+          stylua = {
+            prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+          },
+        },
+      })
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+  {
+    "echasnovski/mini.surround",
+    version = false,
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
+  {
+    "okuuva/auto-save.nvim",
+    -- AutoSaveWritePost
+    opts = {
+      condition = function(buf)
+        local fn = vim.fn
+        local utils = require("auto-save.utils.data")
+
+        -- Lua autoformat is annoying when doing nvim dev, telescope prompt autosave just creates irritating messages
+        if utils.not_in(fn.getbufvar(buf, "&filetype"), { "lua", "TelescopePrompt" }) then
+          return true -- met condition(s), can save
+        end
+        return false -- can't save
+      end,
     },
+    config = function(_, opts)
+      require("auto-save").setup(opts)
+      vim.keymap.set("n", "<leader>ts", "<Cmd>ASToggle<CR>", { desc = "Toggle autosave" })
+    end,
+  },
 }

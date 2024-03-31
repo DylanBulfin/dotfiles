@@ -1,4 +1,5 @@
 -- Lil plugins that don't warrant their own files
+-- TODO move these into more appropriate files
 
 return {
   {
@@ -35,11 +36,5 @@ return {
       vim.keymap.set("n", "<leader>fz", "<Cmd>Zi<CR>", { desc = "Search with zoxide", silent = true })
     end,
   },
-  {
-    "echasnovski/mini.comment",
-    version = false,
-    config = function()
-      require("mini.comment").setup()
-    end,
-  },
+  { "rcarriga/nvim-notify" },
 }
