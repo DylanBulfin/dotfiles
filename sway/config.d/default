@@ -16,7 +16,7 @@ set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-m
 set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
 
 # Your preferred terminal emulators
-set $term-float alacritty
+set $term-float foot
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -27,8 +27,7 @@ set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
 ### Idle configuration
 exec swayidle -w\
-    timeout 1070 'swaylock -f -C ~/.config/swaylock/config'\
-    timeout 770 'swaymsg "output * power off"' \
+    timeout 1000 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -43,7 +42,8 @@ exec swayidle -w\
 # Basics:
 #
     # Start a floating terminal
-    bindsym $mod+Return exec $term-float
+    bindsym $mod+Return exec $term-float --app-id foot_fixed
+    bindsym $mod+Shift+Return exec $term-float
 
     # Open the power menu
     bindsym $mod+Shift+e exec $powermenu
