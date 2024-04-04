@@ -29,6 +29,17 @@ vim.api.nvim_create_autocmd("User", {
   desc = "Disable format during autosave",
 })
 
+-- Set tabstop to 4 for certain filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "cs", "haskell", "javascript", "typescript", "typescriptreact" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
+  group = general,
+  desc = "Set tab width to 4 for certain languages",
+})
+
 vim.g.disable_autoformat = false
 vim.keymap.set("n", "<leader>tf", function()
   if vim.g.disable_autoformat then

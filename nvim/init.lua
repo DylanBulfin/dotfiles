@@ -48,12 +48,13 @@ vim.opt.listchars = {
 }
 
 -- Misc keybindings I like
--- Buffer management
+-- Buffer management, like to have options
 vim.keymap.set("n", "<leader>[", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>]", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
-
 vim.keymap.set("n", "<leader>N", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>n", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "gp", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "gn", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
 
@@ -87,8 +88,11 @@ local to_one_window = function()
 end
 
 -- Close all except main window on current tabpage (insert mode mapping for telescope)
-vim.keymap.set({ "n", "i" }, "<C-w>a", to_one_window, { noremap = false })
-vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false })
+vim.keymap.set({ "n", "i" }, "<C-w>a", to_one_window, { noremap = false, desc = "Close all but main window" })
+vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false, desc = "Close all but main window" })
+
+-- Quit all windows and nvim (non-forced)
+vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = { "Quit Neovim" } })
 
 -- Alias <leader>w to <C-w> bc I think it's more ergonomic (breaks which-key tho)
 vim.keymap.set("n", "<leader>w", function()

@@ -5,7 +5,6 @@
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Float diagnostics" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
 local group = vim.api.nvim_create_augroup("UserLspConfig", {})
 
@@ -31,8 +30,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts("Type definition"))
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts("Rename symbol"))
     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts("Code actions"))
+    vim.keymap.set({ "n", "v" }, "<space>cA", function()
+      vim.lsp.buf.code_action({ apply = true })
+    end, opts("Code actions"))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts("Go to references"))
-    vim.keymap.set("n", "<space>f", function()
+    vim.keymap.set("n", "<space>F", function()
       vim.lsp.buf.format({ async = true })
     end, opts("Format"))
   end,
@@ -49,7 +51,7 @@ return {
       require("neodev").setup()
 
       local lspconfig = require("lspconfig")
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       -- Required for ufo plugin. Make sure to add `capabilities=capabilities` to any new server
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
