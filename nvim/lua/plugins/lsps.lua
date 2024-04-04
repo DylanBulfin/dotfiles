@@ -21,14 +21,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Hover"))
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Hover"))
+    vim.keymap.set("n", "gK", function()
+      vim.lsp.buf.hover()
+      vim.lsp.buf.hover()
+    end, opts("Go to hover window"))
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts("Signature help"))
-    -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-    -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
-    -- vim.keymap.set("n", "<space>wl", function()
-    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, opts("List workspace folders"))
     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts("Type definition"))
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts("Rename symbol"))
     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts("Code actions"))
@@ -69,32 +68,7 @@ return {
         capabilities = capabilities,
       })
       -- Lua
-      -- Previously was manually doing the config neodev does, leaving it in case
       lspconfig.lua_ls.setup({
-        -- on_init = function(client)
-        --   local path = client.workspace_folders[1].name
-        --   if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-        --     return
-        --   end
-        --
-        --   client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-        --     runtime = {
-        --       -- Tell the language server which version of Lua you're using
-        --       -- (most likely LuaJIT in the case of Neovim)
-        --       version = "LuaJIT",
-        --     },
-        --     diagnostics = {
-        --       globals = { "vim", "require" },
-        --     },
-        --     -- Make the server aware of Neovim runtime files
-        --     workspace = {
-        --       checkThirdParty = false,
-        --       library = {
-        --         vim.env.VIMRUNTIME,
-        --       },
-        --     },
-        --   })
-        -- end,
         settings = {
           Lua = {
             diagnostics = { disable = { "missing-fields" } },
@@ -125,7 +99,7 @@ return {
           -- so auto-refresh (see advanced configuration) is enabled by default
           vim.keymap.set("n", "<space>lc", vim.lsp.codelens.run, opts("Run codelens"))
           -- Hoogle search for the type signature of the definition under the cursor
-          vim.keymap.set("n", "<space>lh", ht.hoogle.hoogle_signature, opts("Hoogle type signature"))
+          vim.keymap.set("n", "<space>lH", ht.hoogle.hoogle_signature, opts("Hoogle type signature"))
           -- Evaluate all code snippets
           vim.keymap.set("n", "<space>le", ht.lsp.buf_eval_all, opts("Evaluate all code snippets"))
           -- Toggle a GHCi repl for the current package
