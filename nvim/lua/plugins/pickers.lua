@@ -10,6 +10,7 @@ return {
       },
       { "gbrlsnchs/telescope-lsp-handlers.nvim" },
       { "luc-tielen/telescope_hoogle" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       require("telescope").setup({
