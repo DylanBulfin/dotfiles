@@ -72,8 +72,8 @@ return {
           end, { "i", "s" }),
         }),
         sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
+          { name = "nvim_lsp", max_item_count = 5 },
+          { name = "luasnip", max_item_count = 5 },
         },
       })
     end,

@@ -2,11 +2,6 @@
 -- TODO move these into more appropriate files
 
 return {
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
   -- {
   --   "ellisonleao/gruvbox.nvim",
   --   priority = 1000,

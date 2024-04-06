@@ -131,4 +131,21 @@ return {
       vim.keymap.set("n", "<leader>ts", "<Cmd>ASToggle<CR>", { desc = "Toggle autosave" })
     end,
   },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      local ap = require("nvim-autopairs")
+      local Rule = require("nvim-autopairs.rule")
+      local cond = require("nvim-autopairs.conds")
+      ap.setup()
+
+      ap.add_rule(Rule("<", ">", "rust"):with_pair(cond.before_regex("%a+")):with_move(function(opts)
+        return opts.char == ">"
+      end))
+      ap.add_rule(Rule("|", "|", "rust"):with_pair(cond.before_text("(")):with_move(function(opts)
+        return opts.char == "|"
+      end))
+    end,
+  },
 }

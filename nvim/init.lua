@@ -39,7 +39,7 @@ opt.showmode = false
 opt.background = "dark"
 vim.opt.listchars = {
   space = "⋅",
-  eol = "↴",
+  -- eol = "↴",
   tab = "▎_",
   trail = "•",
   extends = "❯",
@@ -57,6 +57,10 @@ vim.keymap.set("n", "gp", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent =
 vim.keymap.set("n", "gn", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
+
+-- Jump to start/end of line, easier to remember than 0 and $
+vim.keymap.set({ "n", "v" }, "gh", "0", { desc = "Go to start of line" })
+vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to start of line" })
 
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
@@ -95,9 +99,7 @@ vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false, desc = "Clos
 vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = { "Quit Neovim" } })
 
 -- Alias <leader>w to <C-w> bc I think it's more ergonomic (breaks which-key tho)
-vim.keymap.set("n", "<leader>w", function()
-  return "<C-w>"
-end, { expr = true, desc = "+windows" })
+vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "+windows" })
 
 -- In terminal mode let <Esc> do what it's supposed to
 vim.keymap.set("t", "<Esc>", function()
