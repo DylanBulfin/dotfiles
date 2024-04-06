@@ -31,7 +31,8 @@ return {
           vim.diagnostic.config({ severity_sort = true })
 
           require("statuscol").setup({
-            ft_ignore = { "trouble" },
+            ft_ignore = { "trouble", "lazy", "neo-tree" },
+            bt_ignore = { "nofile" },
             segments = {
               {
                 sign = { name = { "Diagnostic" }, maxwidth = 1 },
