@@ -7,12 +7,21 @@ return {
     event = "InsertEnter",
     config = true,
   },
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     require("gruvbox").setup()
+  --     vim.cmd.colorscheme("gruvbox")
+  --   end,
+  -- },
   {
-    "ellisonleao/gruvbox.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-      require("gruvbox").setup()
-      vim.cmd.colorscheme("gruvbox")
+      require("catppuccin").setup()
+      vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
   {
