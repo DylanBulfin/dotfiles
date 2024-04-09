@@ -65,23 +65,20 @@ return {
   },
   {
     "folke/trouble.nvim",
+    branch = "dev",
     dependencies = "nvim-tree/nvim-web-devicons",
-    opts = {
-      use_diagnostic_signs = true, -- Makes sure trouble is in sync with other diagnostics sign users
-    },
     config = function()
       vim.keymap.set("n", "<leader>xx", function()
-        require("trouble").toggle()
-      end, { desc = "Toggle Trouble" })
-      vim.keymap.set("n", "<leader>xw", function()
-        require("trouble").toggle("workspace_diagnostics")
-      end, { desc = "Toggle workspace diagnostics" })
+        require("trouble").toggle({ mode = "diagnostics" })
+      end, { desc = "Toggle workspace Diagnostics" })
       vim.keymap.set("n", "<leader>xd", function()
-        require("trouble").toggle("document_diagnostics")
+        require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } })
       end, { desc = "Toggle document diagnostics" })
       vim.keymap.set("n", "<leader>xq", function()
-        require("trouble").toggle("quickfix")
+        require("trouble").toggle("qflist")
       end, { desc = "Toggle quickfix" })
+
+      require("trouble").setup()
     end,
   },
 }

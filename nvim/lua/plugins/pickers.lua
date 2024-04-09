@@ -38,6 +38,7 @@ return {
         "<Cmd>Telescope hoogle<CR>",
         { silent = true, desc = "Start live hoogle search" }
       )
+      vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "View document symbols" })
       vim.keymap.set("n", "<leader>fr", builtin.grep_string, { desc = "View symbol references" })
       vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "View quickfix list" })
       vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "View commands" })

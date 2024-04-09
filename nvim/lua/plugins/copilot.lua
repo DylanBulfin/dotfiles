@@ -12,9 +12,9 @@ return {
         auto_trigger = true,
         debouce = 100,
         keymap = {
-          accept = "<Right>",
-          next = "<Down>",
-          prev = "<Up>",
+          accept = "<C-f>",
+          next = "<C-n>",
+          prev = "<C-p>",
         },
       },
       server_opts_override = {

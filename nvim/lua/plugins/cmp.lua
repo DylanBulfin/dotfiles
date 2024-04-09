@@ -36,6 +36,7 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        performance = { max_view_entries = 10 },
         mapping = cmp.mapping.preset.insert({
           ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Up
           ["<C-d>"] = cmp.mapping.scroll_docs(4), -- Down
@@ -47,10 +48,6 @@ return {
             -- Uncomment above to auto-select top option with enter
           }),
           ["<C-CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true, -- Autoselect top option
-          }),
-          ["<C-f>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true, -- Autoselect top option
           }),
@@ -72,8 +69,8 @@ return {
           end, { "i", "s" }),
         }),
         sources = {
-          { name = "nvim_lsp", max_item_count = 5 },
-          { name = "luasnip", max_item_count = 5 },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
         },
       })
     end,

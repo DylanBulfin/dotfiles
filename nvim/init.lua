@@ -108,6 +108,10 @@ vim.keymap.set("t", "<Esc>", function()
   return "<C-\\><C-n>"
 end, { expr = true, desc = "Exit terminal mode" })
 
+vim.keymap.set({ "n", "v", "i" }, "<C-i>", function()
+  vim.cmd.normal("zz")
+end, { desc = "Center screen" })
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
