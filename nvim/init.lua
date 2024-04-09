@@ -59,8 +59,10 @@ vim.keymap.set("n", "gn", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = tru
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
 
 -- Jump to start/end of line, easier to remember than 0 and $
-vim.keymap.set({ "n", "v" }, "gh", "0", { desc = "Go to start of line" })
-vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to start of line" })
+vim.keymap.set({ "n", "v" }, "gH", "0", { desc = "Go to start of line" })
+vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to start of line (non-whitespace)" })
+vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
+vim.keymap.set({ "n", "v" }, "gL", "$", { desc = "Go to end of line" })
 
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
@@ -96,7 +98,7 @@ vim.keymap.set({ "n", "i" }, "<C-w>a", to_one_window, { noremap = false, desc = 
 vim.keymap.set("n", "<leader>wa", to_one_window, { noremap = false, desc = "Close all but main window" })
 
 -- Quit all windows and nvim (non-forced)
-vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = { "Quit Neovim" } })
+vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Quit Neovim" })
 
 -- Alias <leader>w to <C-w> bc I think it's more ergonomic (breaks which-key tho)
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "+windows" })

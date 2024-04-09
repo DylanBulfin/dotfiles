@@ -75,29 +75,6 @@ return {
     end,
   },
   {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-  {
-    -- Only have this bc I like the textobject it provides
-    "echasnovski/mini.comment",
-    version = false,
-    opts = {
-      mappings = {
-        -- disable mappings
-        comment = "",
-        comment_line = "",
-        comment_visual = "",
-        textobject = "gc",
-      },
-    },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
-    end,
-  },
-  {
     "echasnovski/mini.surround",
     version = false,
     config = function()
