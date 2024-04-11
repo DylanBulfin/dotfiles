@@ -112,6 +112,9 @@ vim.keymap.set({ "n", "v", "i" }, "<C-i>", function()
   vim.cmd.normal("zz")
 end, { desc = "Center screen" })
 
+-- Select whole buffer
+vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer" })
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
