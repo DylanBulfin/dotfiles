@@ -87,7 +87,7 @@ return {
     opts = {
       custom_textobjects = {
         i = function(mode)
-          -- write a function to calculate the number of spaces in front of the line
+          -- count whitespace characters at beginning of current line
           local function get_indent(line)
             local _, indent = string.find(line, "^%s*")
             return indent
@@ -96,18 +96,19 @@ return {
           local region_start = nil
           local region_end = nil
 
-          local start_lnum = vim.fn.line(".")
+          local start_lnum = vim.fn.line(".") -- line of cursor
           local start_indent = get_indent(vim.fn.getline(start_lnum))
 
-          local last_lnum = vim.fn.line("$")
+          local last_lnum = vim.fn.line("$") -- last line of file
 
           local curr_lnum = start_lnum - 1
 
+          -- Seach backwards for start of region
           while true do
-            if curr_lnum <= 1 then
+            if curr_lnum <= 1 then -- start of file
               region_start = 1
               break
-            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then
+            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then -- reached start of region
               region_start = curr_lnum + 1
               break
             else
@@ -118,10 +119,10 @@ return {
           curr_lnum = start_lnum + 1
 
           while true do
-            if curr_lnum >= last_lnum then
+            if curr_lnum >= last_lnum then -- end of file
               region_end = last_lnum
               break
-            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then
+            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then -- reached end of region
               region_end = curr_lnum - 1
               break
             else
@@ -129,22 +130,23 @@ return {
             end
           end
 
+          -- Should never happen
           if (region_start == nil) or (region_end == nil) then
             vim.notify("Error calculating region")
             return
           end
 
           local from, to
-          if mode == "i" then
+          if mode == "i" then -- inside mode used
             from = {
               line = region_start,
               col = 1,
             }
             to = {
               line = region_end,
-              col = math.max(vim.fn.getline(region_end):len(), 1),
+              col = math.max(vim.fn.getline(region_end):len(), 1), -- make sure col is not 0
             }
-          else
+          else -- around mode used
             local end_lnum = math.min(region_end + 1, last_lnum)
             from = {
               line = math.max(region_start - 1, 1),
@@ -156,7 +158,6 @@ return {
             }
           end
 
-          vim.notify("from: " .. vim.inspect(from) .. " to: " .. vim.inspect(to))
           return { from = from, to = to }
         end,
       },
