@@ -84,8 +84,85 @@ return {
   {
     "echasnovski/mini.ai",
     version = false,
-    config = function()
-      require("mini.ai").setup()
+    opts = {
+      custom_textobjects = {
+        i = function(mode)
+          -- write a function to calculate the number of spaces in front of the line
+          local function get_indent(line)
+            local _, indent = string.find(line, "^%s*")
+            return indent
+          end
+
+          local region_start = nil
+          local region_end = nil
+
+          local start_lnum = vim.fn.line(".")
+          local start_indent = get_indent(vim.fn.getline(start_lnum))
+
+          local last_lnum = vim.fn.line("$")
+
+          local curr_lnum = start_lnum - 1
+
+          while true do
+            if curr_lnum <= 1 then
+              region_start = 1
+              break
+            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then
+              region_start = curr_lnum + 1
+              break
+            else
+              curr_lnum = curr_lnum - 1
+            end
+          end
+
+          curr_lnum = start_lnum + 1
+
+          while true do
+            if curr_lnum >= last_lnum then
+              region_end = last_lnum
+              break
+            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then
+              region_end = curr_lnum - 1
+              break
+            else
+              curr_lnum = curr_lnum + 1
+            end
+          end
+
+          if (region_start == nil) or (region_end == nil) then
+            vim.notify("Error calculating region")
+            return
+          end
+
+          local from, to
+          if mode == "i" then
+            from = {
+              line = region_start,
+              col = 1,
+            }
+            to = {
+              line = region_end,
+              col = math.max(vim.fn.getline(region_end):len(), 1),
+            }
+          else
+            local end_lnum = math.min(region_end + 1, last_lnum)
+            from = {
+              line = math.max(region_start - 1, 1),
+              col = 1,
+            }
+            to = {
+              line = end_lnum,
+              col = math.max(vim.fn.getline(end_lnum):len(), 1),
+            }
+          end
+
+          vim.notify("from: " .. vim.inspect(from) .. " to: " .. vim.inspect(to))
+          return { from = from, to = to }
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.ai").setup(opts)
     end,
   },
   {
