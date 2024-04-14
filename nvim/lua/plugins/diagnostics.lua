@@ -5,17 +5,28 @@ return {
       { "kevinhwang91/promise-async" },
       {
         "luukvbaal/statuscol.nvim",
+        branch = "0.10",
         config = function()
           local builtin = require("statuscol.builtin")
           -- Fix bg colors for sign/fold columns
-          vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282828" })
-          vim.api.nvim_set_hl(0, "FoldColumn", { bg = "#282828" })
+          -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282828" })
+          -- vim.api.nvim_set_hl(0, "FoldColumn", { bg = "#282828" })
+
+          local sev = vim.diagnostic.severity
 
           -- Add icons for statuscol diagnostics
-          vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-          vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-          vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-          vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+          -- Force highest severity to display over others
+          vim.diagnostic.config({
+            severity_sort = true,
+            signs = {
+              text = {
+                [sev.WARN] = "",
+                [sev.ERROR] = "",
+                [sev.INFO] = "",
+                [sev.HINT] = "",
+              },
+            },
+          })
 
           -- Disable inline diagnostics via virtual_text setting
           vim.keymap.set("n", "<leader>xi", function()
@@ -27,23 +38,18 @@ return {
             end
           end, { desc = "Toggle inline diagnostics" })
 
-          -- Force highest severity to display over others
-          vim.diagnostic.config({ severity_sort = true })
-
           require("statuscol").setup({
             ft_ignore = { "trouble", "lazy", "neo-tree" },
             bt_ignore = { "nofile" },
             segments = {
               {
-                sign = { name = { "Diagnostic" }, maxwidth = 1 },
-                click = "v:lua.ScSa",
+                sign = { namespace = { "diagnostic*", "todo*" }, maxwidth = 1 },
               },
               {
                 text = { builtin.foldfunc, " " },
                 condition = { builtin.not_empty, true, builtin.not_empty },
                 click = "v:lua.ScFa",
               },
-              { text = { "%s" }, click = "v:lua.ScSa" },
               { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
             },
           })
