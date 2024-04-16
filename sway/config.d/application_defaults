@@ -5,6 +5,8 @@ for_window [app_id="foot_fixed"] focus
 
 assign [app_id="firefox"] 2
 for_window [app_id="firefox"] focus
+assign [class="floorp"] 2
+for_window [class="floorp"] focus
 
 assign [class="firefox"] 2
 for_window [class="firefox"] focus

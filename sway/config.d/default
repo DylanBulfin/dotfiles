@@ -27,6 +27,7 @@ set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
 ### Idle configuration
 exec swayidle -w\
+    timeout 1600 'swaylock -f -C ~/.config/swaylock/config'\
     timeout 1000 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
@@ -215,7 +216,7 @@ bindsym $mod+r mode "resize"
 # App shortcuts
 #
     bindsym $mod+n exec thunar
-    bindsym $mod+o exec firefox
+    bindsym $mod+o exec floorp
 #
 # Screenshots
 #
