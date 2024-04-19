@@ -15,19 +15,29 @@
 
 (defalias
   ;; clctl (around (layer-toggle ctrllayer) lctl)
-  clalt (layer-toggle navlayer)
-  es (tap-next esc lctl)
   ;; es (tap-next esc @clctl)
   ;; sp (layer-switch navlayer)
   ;; rt (layer-switch qwerty)
   nw C-right
   pw C-left
+  clalt (layer-toggle altlayer)
+  es (tap-next esc lctl)
+  tm (tap-hold-next-release 200 tab lmet)
+  ;; lmett (layer-toggle lmetlayer)
+  ;; m_c (tap-hold-next-release 200 c lmet)
+  ;; a_x (tap-hold-next-release 200 x lalt)
+  ;; m_m (tap-hold-next-release 200 m lmet)
+  ;; a_, (tap-hold-next-release 200 , lalt)
+  ;; m_c (tap-hold 200 c lmet)
+  ;; a_x (tap-hold 200 x lalt)
+  ;; m_m (tap-hold 200 m lmet)
+  ;; a_, (tap-hold 200 , lalt)
 )
 
 (deflayer qwerty
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        home end ins del
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc                  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \                     kp7  kp8  kp9  kp+
+  @tm  q    w    e    r    t    y    u    i    o    p    [    ]    \                     kp7  kp8  kp9  kp+
   @es  a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
   lsft z    x    c    v    b    n    m    ,    .    /    rsft            pgup up   pgdn  kp1  kp2  kp3  kprt
   lctl lmet @clalt         spc                 ralt prnt rctl            left down rght  kp0  kp.
@@ -41,21 +51,3 @@
   A-lsft A-z    A-x    A-c    A-v    @pw    A-n    A-m    A-,    A-.    A-/    A-rsft            A-pgup A-up   A-pgdn  A-kp1  A-kp2  A-kp3  A-kprt
   A-lctl A-lmet _                    A-spc                       A-ralt A-prnt A-rctl            A-left A-down A-rght  A-kp0  A-kp.
 )
-
-;; (deflayer ctrllayer
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _   _   _   _
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _                     _    _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _                     _    _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _                          _    _    _
-;;   _    _    _    _    _    _    _    _    _    _    _    _               _    _    _     _    _    _    _
-;;   _    _    _              @sp                 _    _    _               _    _    _     _    _
-;; )
-
-;; (deflayer navlayer
-;;   @rt  _    _    _    _    _    _    _    _    _    _    _    _          _   _   _   _
-;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _                     _    _    _    _
-;;   _    _    @nw  _    _    _    _    _    _    _    _    _    _    _                     _    _    _    _
-;;   @rt  _    _    _    _    _    left down up  right _    _    _                          _    _    _
-;;   _    _    _    _    _    @pw  _    _    _    _    _    _               _    _    _     _    _    _    _
-;;   _    _    _              _                   _    _    _               _    _    _     _    _
-;; )
