@@ -75,10 +75,10 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       vim.keymap.set("n", "<leader>xx", function()
-        require("trouble").toggle({ mode = "diagnostics" })
+        require("trouble").toggle({ mode = "diagnostics", focus = true })
       end, { desc = "Toggle workspace Diagnostics" })
       vim.keymap.set("n", "<leader>xd", function()
-        require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } })
+        require("trouble").toggle({ mode = "diagnostics", focus = true, filter = { buf = 0 } })
       end, { desc = "Toggle document diagnostics" })
       vim.keymap.set("n", "<leader>xq", function()
         require("trouble").toggle("qflist")
