@@ -86,20 +86,6 @@ return {
     version = false,
     opts = {
       custom_textobjects = {
-        o = function()
-          local ln = vim.fn.line(".") + 1
-          if ln > vim.fn.line("$") then
-            return nil
-          end
-          return { from = { line = ln, col = 1 }, to = { line = ln, col = math.max(vim.fn.getline(ln):len(), 1) } }
-        end,
-        O = function()
-          local ln = vim.fn.line(".") - 1
-          if ln <= 1 then
-            return nil
-          end
-          return { from = { line = ln, col = 1 }, to = { line = ln, col = math.max(vim.fn.getline(ln):len(), 1) } }
-        end,
         i = function(mode)
           -- count whitespace characters at beginning of current line
           local function get_indent(line)
