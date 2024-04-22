@@ -116,6 +116,8 @@ vim.keymap.set({ "n", "v", "i" }, "<C-i>", function()
   vim.cmd.normal("zz")
 end, { desc = "Center screen" })
 
+vim.keymap.set("i", "<C-e>", "<Esc>cc", { desc = "Clear line" })
+
 -- Select whole buffer
 vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer" })
 
