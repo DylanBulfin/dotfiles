@@ -4,50 +4,38 @@
   fallthrough true
 )
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        home end ins del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc                  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \                     kp7  kp8  kp9  kp+
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft            pgup up   pgdn  kp1  kp2  kp3  kprt
-  lctl lmet lalt           spc                 ralt prnt rctl            left down rght  kp0  kp.
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc                 ralt prnt rctl
 )
 
 
 (defalias
-  ;; clctl (around (layer-toggle ctrllayer) lctl)
-  ;; es (tap-next esc @clctl)
-  ;; sp (layer-switch navlayer)
-  ;; rt (layer-switch qwerty)
   nw C-right
   pw C-left
   clalt (layer-toggle altlayer)
   es (tap-next esc lctl)
   tm (tap-hold-next-release 200 tab lmet)
-  ;; lmett (layer-toggle lmetlayer)
-  ;; m_c (tap-hold-next-release 200 c lmet)
-  ;; a_x (tap-hold-next-release 200 x lalt)
-  ;; m_m (tap-hold-next-release 200 m lmet)
-  ;; a_, (tap-hold-next-release 200 , lalt)
-  ;; m_c (tap-hold 200 c lmet)
-  ;; a_x (tap-hold 200 x lalt)
-  ;; m_m (tap-hold 200 m lmet)
-  ;; a_, (tap-hold 200 , lalt)
+  spc (tap-hold-next-release 200 spc @clalt)
 )
 
 (deflayer qwerty
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        home end ins del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc                  nlck kp/  kp*  kp-
-  @tm  q    w    e    r    t    y    u    i    o    p    [    ]    \                     kp7  kp8  kp9  kp+
-  @es  a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft            pgup up   pgdn  kp1  kp2  kp3  kprt
-  lctl lmet @clalt         spc                 ralt prnt rctl            left down rght  kp0  kp.
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tm  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @es  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet @clalt         @spc                ralt prnt rctl
 )
 
 (deflayer altlayer
-  A-esc  A-f1   A-f2   A-f3   A-f4   A-f5   A-f6   A-f7   A-f8   A-f9   A-f10  A-f11  A-f12        A-home A-end A-ins A-del
-  A-grv  A-1    A-2    A-3    A-4    A-5    A-6    A-7    A-8    A-9    A-0    A--    A-=    A-bspc                    A-nlck A-kp/  A-kp*  A-kp-
-  A-tab  A-q    @nw    A-e    A-r    A-t    A-y    A-u    A-i    A-o    A-p    A-[    A-]    A-\                       A-kp7  A-kp8  A-kp9  A-kp+
-  A-lctl A-a    A-s    A-d    A-f    A-g    left   down   up     right  A-;    A-'    A-ret                            A-kp4  A-kp5  A-kp6
-  A-lsft A-z    A-x    A-c    A-v    @pw    A-n    A-m    A-,    A-.    A-/    A-rsft            A-pgup A-up   A-pgdn  A-kp1  A-kp2  A-kp3  A-kprt
-  A-lctl A-lmet _                    A-spc                       A-ralt A-prnt A-rctl            A-left A-down A-rght  A-kp0  A-kp.
+  A-esc  A-f1   A-f2   A-f3   A-f4   A-f5   A-f6   A-f7   A-f8   A-f9   A-f10  A-f11  A-f12
+  A-grv  A-1    A-2    A-3    A-4    A-5    A-6    A-7    A-8    A-9    A-0    A--    A-=    A-bspc
+  A-tab  A-q    @nw    A-e    A-r    A-t    A-y    A-u    A-i    A-o    A-p    A-[    A-]    A-\
+  A-lctl A-a    A-s    A-d    A-f    A-g    left   down   up     right  A-;    A-'    A-ret
+  A-lsft A-z    A-x    A-c    A-v    @pw    A-n    A-m    A-,    A-.    A-/    A-rsft
+  A-lctl A-lmet _                    _                           A-ralt A-prnt A-rctl
 )
