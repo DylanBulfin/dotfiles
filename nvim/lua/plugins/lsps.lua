@@ -78,6 +78,11 @@ return {
         },
         capabilities = capabilities,
       })
+
+      -- Go / Golang
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+      })
     end,
   },
   -- haskell-tools sets up hls so no need to set it above

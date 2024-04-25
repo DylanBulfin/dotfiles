@@ -21,6 +21,7 @@ return {
           "fish",
           "haskell",
           "html",
+          "go",
           "javascript",
           "json",
           "lua",

@@ -57,6 +57,7 @@ vim.keymap.set("n", "gp", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent =
 vim.keymap.set("n", "gn", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
+vim.keymap.set("n", "<leader>bs", "<Cmd>w<CR>", { desc = "Save buffer", silent = true })
 
 -- Jump to start/end of line, easier to remember than 0 and $
 vim.keymap.set({ "n", "v" }, "gH", "0", { desc = "Go to start of line" })
