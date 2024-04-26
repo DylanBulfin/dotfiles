@@ -123,6 +123,8 @@ vim.keymap.set("i", "<C-e>", "<Esc>cc", { desc = "Clear line" })
 -- Select whole buffer
 vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer" })
 
+require("colemak").configure()
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
