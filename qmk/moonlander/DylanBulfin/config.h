@@ -3,6 +3,8 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 #define ORYX_CONFIGURATOR
+#define RETRO_TAPPING
+
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define FIRMWARE_VERSION u8"EoZp5/x4anW"
 #define RAW_USAGE_PAGE 0xFF60
