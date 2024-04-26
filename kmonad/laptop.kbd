@@ -20,6 +20,17 @@
   es (tap-next esc lctl)
   tm (tap-hold-next-release 200 tab lmet)
   spc (tap-hold-next-release 200 spc @clalt)
+  qw (layer-switch qwerty)
+  tmk (layer-switch tarmak)
+)
+
+(deflayer tarmak
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tm  q    w    f    r    g    y    u    i    o    p    [    ]    \
+  @es  a    s    d    t    j    h    n    e    l    ;    '    ret
+  lsft z    x    c    v    b    k    m    ,    .    /    rsft
+  lctl lmet @clalt         @spc                ralt @qw  rctl
 )
 
 (deflayer qwerty
@@ -28,7 +39,7 @@
   @tm  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @es  a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet @clalt         @spc                ralt prnt rctl
+  lctl lmet @clalt         @spc                ralt @tmk rctl
 )
 
 (deflayer altlayer
