@@ -123,7 +123,19 @@ vim.keymap.set("i", "<C-e>", "<Esc>cc", { desc = "Clear line" })
 -- Select whole buffer
 vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer" })
 
-require("colemak").configure()
+require("keyboard").colemak()
+
+vim.api.nvim_create_user_command("Colemak", function()
+  require("keyboard").colemak()
+end, {
+  desc = "Set keybindings to Colemak",
+})
+
+vim.api.nvim_create_user_command("Qwerty", function()
+  require("keyboard").qwerty()
+end, {
+  desc = "Set keybindings to Qwerty",
+})
 
 require("lazy").setup({
   spec = {
