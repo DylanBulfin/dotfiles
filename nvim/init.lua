@@ -60,10 +60,10 @@ vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer"
 vim.keymap.set("n", "<leader>bs", "<Cmd>w<CR>", { desc = "Save buffer", silent = true })
 
 -- Jump to start/end of line, easier to remember than 0 and $
-vim.keymap.set({ "n", "v" }, "gH", "0", { desc = "Go to start of line" })
-vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to start of line (non-whitespace)" })
-vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
-vim.keymap.set({ "n", "v" }, "gL", "$", { desc = "Go to end of line" })
+vim.keymap.set({ "n", "v" }, "gM", "0", { desc = "Go to start of line" })
+vim.keymap.set({ "n", "v" }, "gm", "^", { desc = "Go to start of line (non-whitespace)" })
+vim.keymap.set({ "n", "v" }, "gi", "$", { desc = "Go to end of line" })
+vim.keymap.set({ "n", "v" }, "gI", "$", { desc = "Go to end of line" })
 
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()

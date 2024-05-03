@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+    vim.keymap.set("n", "gu", vim.lsp.buf.implementation, opts("Go to implementation"))
     vim.keymap.set("n", "E", vim.lsp.buf.hover, opts("Hover"))
     vim.keymap.set("n", "gE", function()
       vim.lsp.buf.hover()
