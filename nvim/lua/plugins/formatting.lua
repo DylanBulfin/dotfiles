@@ -85,8 +85,17 @@ return {
     "echasnovski/mini.ai",
     version = false,
     opts = {
+      mappings = {
+        around = "a",
+        inside = "u",
+
+        around_next = "an",
+        inside_next = "un",
+        around_last = "al",
+        inside_last = "ul",
+      },
       custom_textobjects = {
-        i = function(mode)
+        u = function(mode)
           -- count whitespace characters at beginning of current line
           local function get_indent(line)
             local _, indent = string.find(line, "^%s*")

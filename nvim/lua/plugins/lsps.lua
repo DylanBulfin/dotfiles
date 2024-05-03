@@ -83,6 +83,10 @@ return {
       lspconfig.gopls.setup({
         capabilities = capabilities,
       })
+
+      lspconfig.ccls.setup({
+        capabilities = capabilities,
+      })
     end,
   },
   -- haskell-tools sets up hls so no need to set it above
