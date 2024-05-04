@@ -15,19 +15,26 @@
 (defalias
   nw C-right
   pw C-left
-  clalt (layer-toggle altlayer)
   es (tap-next esc lctl)
-  tm (tap-hold-next-release 200 tab lmet)
-  spc (tap-hold-next-release 200 spc @clalt)
+  spc (tap-hold-next-release 200 spc (layer-toggle hrm))
 
-  a (tap-hold-next-release 500 a (layer-toggle R1000) :timeout-button a)
-  r (tap-hold-next-release 500 r (layer-toggle R0100) :timeout-button r)
-  s (tap-hold-next-release 500 s (layer-toggle R0010) :timeout-button s)
-  t (tap-hold-next-release 500 t (layer-toggle R0001) :timeout-button t)
-  n (tap-hold-next-release 500 n (layer-toggle L0001) :timeout-button n)
-  e (tap-hold-next-release 500 e (layer-toggle L0010) :timeout-button e)
-  i (tap-hold-next-release 500 i (layer-toggle L0100) :timeout-button i)
-  o (tap-hold-next-release 500 o (layer-toggle L1000) :timeout-button o)
+  sa (around spc a) 
+  sr (around spc r)
+  ss (around spc s)
+  st (around spc t)
+  sn (around spc n)
+  se (around spc e)
+  si (around spc i)
+  so (around spc o)
+
+  a (layer-toggle R1000)
+  r (layer-toggle R0100)
+  s (layer-toggle R0010)
+  t (layer-toggle R0001)
+  n (layer-toggle L0001)
+  e (layer-toggle L0010)
+  i (layer-toggle L0100)
+  o (layer-toggle L1000)
 
   L0001 (layer-toggle L0001)
   L0010 (layer-toggle L0010)
@@ -65,9 +72,17 @@
 (deflayer base
  grv 1 2 3 4 5 6 7 8 9 0 - + bspc
  tab q w f p b j l u y ; [ ] \
- @es @a @r @s @t g m @n @e @i @o ' ret
+ @es a r s t g m n e i o ' ret
  lsft z x c d v k h , . /
  @spc left down up right
+)
+
+(deflayer hrm
+ grv 1 2 3 4 5 6 7 8 9 0 - + bspc
+ tab q w f p b j l u y ; [ ] \
+ esc @a @r @s @t g m @n @e @i @o ' ret
+ lsft z x c d v k h , . /
+ _ left down up right
 )
 
 (deflayer altlayer
