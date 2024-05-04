@@ -272,7 +272,7 @@
 (deflayer R1000
  grv 1 2 3 4 5 6 A-7 A-8 A-9 A-0 A-- A-+ A-bspc
  tab q w f p b A-j A-l A-u A-y A-; A-[ A-] A-\
- esc _ @R1100 @R1010 @R1001 g A-m A-n A-e A-i A-o A-' A-ret
+ esc _ @R1100 @R1010 @R1001 g left down up right A-o A-' A-ret
  _ z x c d v A-k A-h A-, A-. A-/
  A-spc A-left A-down A-up A-right
 )
