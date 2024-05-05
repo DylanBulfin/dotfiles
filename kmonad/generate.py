@@ -21,7 +21,7 @@ right_flat = [x for sublist in right_only for x in sublist]
 shared = [[], [], [], [], ["spc"]]
 
 mod_map = {
-    "a": "AR", "r": "MR", "s": "CR", "t": "SR", "n": "SL", "e": "CL", "i": "ML", "o": "AL",
+    "z": "AR", "x": "MR", "c": "CR", "d": "SR", "h": "SL", ",": "CL", ".": "ML", "/": "AL",
 }
 
 class Layer:
@@ -58,13 +58,13 @@ def get_modified_key(key, layer):
                 return "_"
             else:
                 if m == "A":
-                    return f"@{Layer(layer.hand, 1, layer.meta, layer.ctrl, layer.shift).name()}"
+                    return f"(layer-toggle {Layer(layer.hand, 1, layer.meta, layer.ctrl, layer.shift).name()})"
                 elif m == "M":
-                    return f"@{Layer(layer.hand, layer.alt, 1, layer.ctrl, layer.shift).name()}"
+                    return f"(layer-toggle {Layer(layer.hand, layer.alt, 1, layer.ctrl, layer.shift).name()})"
                 elif m == "C":
-                    return f"@{Layer(layer.hand, layer.alt, layer.meta, 1, layer.shift).name()}"
+                    return f"(layer-toggle {Layer(layer.hand, layer.alt, layer.meta, 1, layer.shift).name()})"
                 elif m == "S":
-                    return f"@{Layer(layer.hand, layer.alt, layer.meta, layer.ctrl, 1).name()}"
+                    return f"(layer-toggle {Layer(layer.hand, layer.alt, layer.meta, layer.ctrl, 1).name()})"
 
     if key in left_flat and layer.hand == "R":
         return key
