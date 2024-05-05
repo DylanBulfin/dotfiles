@@ -4,284 +4,49 @@
   fallthrough true
 )
 (defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /
-  spc left down up right
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc                 ralt prnt rctl
 )
 
 
 (defalias
   nw C-right
   pw C-left
+  clalt (layer-toggle altlayer)
   es (tap-next esc lctl)
-  spc (tap-hold-next-release 200 spc (layer-toggle nav))
-
-  z (tap-hold-next-release 200 z (layer-toggle R1000) :timeout-button z)
-  x (tap-hold-next-release 200 x (layer-toggle R0100) :timeout-button x)
-  c (tap-hold-next-release 200 c (layer-toggle R0010) :timeout-button c)
-  d (tap-hold-next-release 200 d (layer-toggle R0001) :timeout-button d)
-  h (tap-hold-next-release 200 h (layer-toggle L0001) :timeout-button h)
-  , (tap-hold-next-release 200 , (layer-toggle L0010) :timeout-button ,)
-  . (tap-hold-next-release 200 . (layer-toggle L0100) :timeout-button .)
-  / (tap-hold-next-release 200 / (layer-toggle L1000) :timeout-button /)
+  tm (tap-hold-next-release 200 tab lmet)
+  spc (tap-hold-next-release 200 spc @clalt)
+  qw (layer-switch qwerty)
+  tmk (layer-switch tarmak)
 )
 
-(deflayer base
- grv 1 2 3 4 5 6 7 8 9 0 - + bspc
- tab q w f p b j l u y ; [ ] \
- @es a r s t g m n e i o ' ret
- lsft @z @x @c @d v k @h @, @. @/
- @spc left down up right
+(deflayer tarmak
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tm  q    w    f    r    g    y    u    i    o    p    [    ]    \
+  @es  a    s    d    t    j    h    n    e    l    ;    '    ret
+  lsft z    x    c    v    b    k    m    ,    .    /    rsft
+  lctl lmet @clalt         @spc                ralt @qw  rctl
 )
 
-(deflayer nav
- grv 1 2 3 4 5 6 7 8 9 0 - + bspc
- tab q w f p b j l u y ; [ ] \
- lctl a r s t g left down up right o ' ret
- lsft z x c d v k h , . /
- _ left down up right
+(deflayer qwerty
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tm  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @es  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet @clalt         @spc                ralt @tmk rctl
 )
 
-(deflayer L0001
- S-grv S-1 S-2 S-3 S-4 S-5 S-6 7 8 9 0 - + bspc
- S-tab S-q S-w S-f S-p S-b j l u y ; [ ] \
- S-esc S-a S-r S-s S-t S-g m n e i o ' ret
- _ S-z S-x S-c S-d S-v k _ (layer-toggle L0011) (layer-toggle L0101) (layer-toggle L1001)
- S-spc left down up right
+(deflayer altlayer
+  A-esc  A-f1   A-f2   A-f3   A-f4   A-f5   A-f6   A-f7   A-f8   A-f9   A-f10  A-f11  A-f12
+  A-grv  A-1    A-2    A-3    A-4    A-5    A-6    A-7    A-8    A-9    A-0    A--    A-=    A-bspc
+  A-tab  A-q    @nw    A-e    A-r    A-t    A-y    A-u    A-i    A-o    A-p    A-[    A-]    A-\
+  A-lctl A-a    A-s    A-d    A-f    A-g    left   down   up     right  A-;    A-'    A-ret
+  A-lsft A-z    A-x    A-c    A-v    @pw    A-n    A-m    A-,    A-.    A-/    A-rsft
+  A-lctl A-lmet _                    _                           A-ralt A-prnt A-rctl
 )
-
-(deflayer L0010
- C-grv C-1 C-2 C-3 C-4 C-5 C-6 7 8 9 0 - + bspc
- C-tab C-q C-w C-f C-p C-b j l u y ; [ ] \
- C-esc C-a C-r C-s C-t C-g m n e i o ' ret
- _ C-z C-x C-c C-d C-v k (layer-toggle L0011) _ (layer-toggle L0110) (layer-toggle L1010)
- C-spc left down up right
-)
-
-(deflayer L0011
- C-S-grv C-S-1 C-S-2 C-S-3 C-S-4 C-S-5 C-S-6 7 8 9 0 - + bspc
- C-S-tab C-S-q C-S-w C-S-f C-S-p C-S-b j l u y ; [ ] \
- C-S-esc C-S-a C-S-r C-S-s C-S-t C-S-g m n e i o ' ret
- _ C-S-z C-S-x C-S-c C-S-d C-S-v k _ _ (layer-toggle L0111) (layer-toggle L1011)
- C-S-spc left down up right
-)
-
-(deflayer L0100
- M-grv M-1 M-2 M-3 M-4 M-5 M-6 7 8 9 0 - + bspc
- M-tab M-q M-w M-f M-p M-b j l u y ; [ ] \
- M-esc M-a M-r M-s M-t M-g m n e i o ' ret
- _ M-z M-x M-c M-d M-v k (layer-toggle L0101) (layer-toggle L0110) _ (layer-toggle L1100)
- M-spc left down up right
-)
-
-(deflayer L0101
- M-S-grv M-S-1 M-S-2 M-S-3 M-S-4 M-S-5 M-S-6 7 8 9 0 - + bspc
- M-S-tab M-S-q M-S-w M-S-f M-S-p M-S-b j l u y ; [ ] \
- M-S-esc M-S-a M-S-r M-S-s M-S-t M-S-g m n e i o ' ret
- _ M-S-z M-S-x M-S-c M-S-d M-S-v k _ (layer-toggle L0111) _ (layer-toggle L1101)
- M-S-spc left down up right
-)
-
-(deflayer L0110
- M-C-grv M-C-1 M-C-2 M-C-3 M-C-4 M-C-5 M-C-6 7 8 9 0 - + bspc
- M-C-tab M-C-q M-C-w M-C-f M-C-p M-C-b j l u y ; [ ] \
- M-C-esc M-C-a M-C-r M-C-s M-C-t M-C-g m n e i o ' ret
- _ M-C-z M-C-x M-C-c M-C-d M-C-v k (layer-toggle L0111) _ _ (layer-toggle L1110)
- M-C-spc left down up right
-)
-
-(deflayer L0111
- M-C-S-grv M-C-S-1 M-C-S-2 M-C-S-3 M-C-S-4 M-C-S-5 M-C-S-6 7 8 9 0 - + bspc
- M-C-S-tab M-C-S-q M-C-S-w M-C-S-f M-C-S-p M-C-S-b j l u y ; [ ] \
- M-C-S-esc M-C-S-a M-C-S-r M-C-S-s M-C-S-t M-C-S-g m n e i o ' ret
- _ M-C-S-z M-C-S-x M-C-S-c M-C-S-d M-C-S-v k _ _ _ (layer-toggle L1111)
- M-C-S-spc left down up right
-)
-
-(deflayer L1000
- A-grv A-1 A-2 A-3 A-4 A-5 A-6 7 8 9 0 - + bspc
- A-tab A-q A-w A-f A-p A-b j l u y ; [ ] \
- A-esc A-a A-r A-s A-t A-g m n e i o ' ret
- _ A-z A-x A-c A-d A-v k (layer-toggle L1001) (layer-toggle L1010) (layer-toggle L1100) _
- A-spc left down up right
-)
-
-(deflayer L1001
- A-S-grv A-S-1 A-S-2 A-S-3 A-S-4 A-S-5 A-S-6 7 8 9 0 - + bspc
- A-S-tab A-S-q A-S-w A-S-f A-S-p A-S-b j l u y ; [ ] \
- A-S-esc A-S-a A-S-r A-S-s A-S-t A-S-g m n e i o ' ret
- _ A-S-z A-S-x A-S-c A-S-d A-S-v k _ (layer-toggle L1011) (layer-toggle L1101) _
- A-S-spc left down up right
-)
-
-(deflayer L1010
- A-C-grv A-C-1 A-C-2 A-C-3 A-C-4 A-C-5 A-C-6 7 8 9 0 - + bspc
- A-C-tab A-C-q A-C-w A-C-f A-C-p A-C-b j l u y ; [ ] \
- A-C-esc A-C-a A-C-r A-C-s A-C-t A-C-g m n e i o ' ret
- _ A-C-z A-C-x A-C-c A-C-d A-C-v k (layer-toggle L1011) _ (layer-toggle L1110) _
- A-C-spc left down up right
-)
-
-(deflayer L1011
- A-C-S-grv A-C-S-1 A-C-S-2 A-C-S-3 A-C-S-4 A-C-S-5 A-C-S-6 7 8 9 0 - + bspc
- A-C-S-tab A-C-S-q A-C-S-w A-C-S-f A-C-S-p A-C-S-b j l u y ; [ ] \
- A-C-S-esc A-C-S-a A-C-S-r A-C-S-s A-C-S-t A-C-S-g m n e i o ' ret
- _ A-C-S-z A-C-S-x A-C-S-c A-C-S-d A-C-S-v k _ _ (layer-toggle L1111) _
- A-C-S-spc left down up right
-)
-
-(deflayer L1100
- A-M-grv A-M-1 A-M-2 A-M-3 A-M-4 A-M-5 A-M-6 7 8 9 0 - + bspc
- A-M-tab A-M-q A-M-w A-M-f A-M-p A-M-b j l u y ; [ ] \
- A-M-esc A-M-a A-M-r A-M-s A-M-t A-M-g m n e i o ' ret
- _ A-M-z A-M-x A-M-c A-M-d A-M-v k (layer-toggle L1101) (layer-toggle L1110) _ _
- A-M-spc left down up right
-)
-
-(deflayer L1101
- A-M-S-grv A-M-S-1 A-M-S-2 A-M-S-3 A-M-S-4 A-M-S-5 A-M-S-6 7 8 9 0 - + bspc
- A-M-S-tab A-M-S-q A-M-S-w A-M-S-f A-M-S-p A-M-S-b j l u y ; [ ] \
- A-M-S-esc A-M-S-a A-M-S-r A-M-S-s A-M-S-t A-M-S-g m n e i o ' ret
- _ A-M-S-z A-M-S-x A-M-S-c A-M-S-d A-M-S-v k _ (layer-toggle L1111) _ _
- A-M-S-spc left down up right
-)
-
-(deflayer L1110
- A-M-C-grv A-M-C-1 A-M-C-2 A-M-C-3 A-M-C-4 A-M-C-5 A-M-C-6 7 8 9 0 - + bspc
- A-M-C-tab A-M-C-q A-M-C-w A-M-C-f A-M-C-p A-M-C-b j l u y ; [ ] \
- A-M-C-esc A-M-C-a A-M-C-r A-M-C-s A-M-C-t A-M-C-g m n e i o ' ret
- _ A-M-C-z A-M-C-x A-M-C-c A-M-C-d A-M-C-v k (layer-toggle L1111) _ _ _
- A-M-C-spc left down up right
-)
-
-(deflayer L1111
- A-M-C-S-grv A-M-C-S-1 A-M-C-S-2 A-M-C-S-3 A-M-C-S-4 A-M-C-S-5 A-M-C-S-6 7 8 9 0 - + bspc
- A-M-C-S-tab A-M-C-S-q A-M-C-S-w A-M-C-S-f A-M-C-S-p A-M-C-S-b j l u y ; [ ] \
- A-M-C-S-esc A-M-C-S-a A-M-C-S-r A-M-C-S-s A-M-C-S-t A-M-C-S-g m n e i o ' ret
- _ A-M-C-S-z A-M-C-S-x A-M-C-S-c A-M-C-S-d A-M-C-S-v k _ _ _ _
- A-M-C-S-spc left down up right
-)
-
-(deflayer R0001
- grv 1 2 3 4 5 6 S-7 S-8 S-9 S-0 S-- S-+ S-bspc
- tab q w f p b S-j S-l S-u S-y S-; S-[ S-] S-\
- esc a r s t g S-m S-n S-e S-i S-o S-' S-ret
- _ (layer-toggle R1001) (layer-toggle R0101) (layer-toggle R0011) _ v S-k S-h S-, S-. S-/
- S-spc S-left S-down S-up S-right
-)
-
-(deflayer R0010
- grv 1 2 3 4 5 6 C-7 C-8 C-9 C-0 C-- C-+ C-bspc
- tab q w f p b C-j C-l C-u C-y C-; C-[ C-] C-\
- esc a r s t g C-m C-n C-e C-i C-o C-' C-ret
- _ (layer-toggle R1010) (layer-toggle R0110) _ (layer-toggle R0011) v C-k C-h C-, C-. C-/
- C-spc C-left C-down C-up C-right
-)
-
-(deflayer R0011
- grv 1 2 3 4 5 6 C-S-7 C-S-8 C-S-9 C-S-0 C-S-- C-S-+ C-S-bspc
- tab q w f p b C-S-j C-S-l C-S-u C-S-y C-S-; C-S-[ C-S-] C-S-\
- esc a r s t g C-S-m C-S-n C-S-e C-S-i C-S-o C-S-' C-S-ret
- _ (layer-toggle R1011) (layer-toggle R0111) _ _ v C-S-k C-S-h C-S-, C-S-. C-S-/
- C-S-spc C-S-left C-S-down C-S-up C-S-right
-)
-
-(deflayer R0100
- grv 1 2 3 4 5 6 M-7 M-8 M-9 M-0 M-- M-+ M-bspc
- tab q w f p b M-j M-l M-u M-y M-; M-[ M-] M-\
- esc a r s t g M-m M-n M-e M-i M-o M-' M-ret
- _ (layer-toggle R1100) _ (layer-toggle R0110) (layer-toggle R0101) v M-k M-h M-, M-. M-/
- M-spc M-left M-down M-up M-right
-)
-
-(deflayer R0101
- grv 1 2 3 4 5 6 M-S-7 M-S-8 M-S-9 M-S-0 M-S-- M-S-+ M-S-bspc
- tab q w f p b M-S-j M-S-l M-S-u M-S-y M-S-; M-S-[ M-S-] M-S-\
- esc a r s t g M-S-m M-S-n M-S-e M-S-i M-S-o M-S-' M-S-ret
- _ (layer-toggle R1101) _ (layer-toggle R0111) _ v M-S-k M-S-h M-S-, M-S-. M-S-/
- M-S-spc M-S-left M-S-down M-S-up M-S-right
-)
-
-(deflayer R0110
- grv 1 2 3 4 5 6 M-C-7 M-C-8 M-C-9 M-C-0 M-C-- M-C-+ M-C-bspc
- tab q w f p b M-C-j M-C-l M-C-u M-C-y M-C-; M-C-[ M-C-] M-C-\
- esc a r s t g M-C-m M-C-n M-C-e M-C-i M-C-o M-C-' M-C-ret
- _ (layer-toggle R1110) _ _ (layer-toggle R0111) v M-C-k M-C-h M-C-, M-C-. M-C-/
- M-C-spc M-C-left M-C-down M-C-up M-C-right
-)
-
-(deflayer R0111
- grv 1 2 3 4 5 6 M-C-S-7 M-C-S-8 M-C-S-9 M-C-S-0 M-C-S-- M-C-S-+ M-C-S-bspc
- tab q w f p b M-C-S-j M-C-S-l M-C-S-u M-C-S-y M-C-S-; M-C-S-[ M-C-S-] M-C-S-\
- esc a r s t g M-C-S-m M-C-S-n M-C-S-e M-C-S-i M-C-S-o M-C-S-' M-C-S-ret
- _ (layer-toggle R1111) _ _ _ v M-C-S-k M-C-S-h M-C-S-, M-C-S-. M-C-S-/
- M-C-S-spc M-C-S-left M-C-S-down M-C-S-up M-C-S-right
-)
-
-(deflayer R1000
- grv 1 2 3 4 5 6 A-7 A-8 A-9 A-0 A-- A-+ A-bspc
- tab q w f p b A-j A-l A-u A-y A-; A-[ A-] A-\
- esc a r s t g A-m A-n A-e A-i A-o A-' A-ret
- _ _ (layer-toggle R1100) (layer-toggle R1010) (layer-toggle R1001) v A-k A-h A-, A-. A-/
- A-spc A-left A-down A-up A-right
-)
-
-(deflayer R1001
- grv 1 2 3 4 5 6 A-S-7 A-S-8 A-S-9 A-S-0 A-S-- A-S-+ A-S-bspc
- tab q w f p b A-S-j A-S-l A-S-u A-S-y A-S-; A-S-[ A-S-] A-S-\
- esc a r s t g A-S-m A-S-n A-S-e A-S-i A-S-o A-S-' A-S-ret
- _ _ (layer-toggle R1101) (layer-toggle R1011) _ v A-S-k A-S-h A-S-, A-S-. A-S-/
- A-S-spc A-S-left A-S-down A-S-up A-S-right
-)
-
-(deflayer R1010
- grv 1 2 3 4 5 6 A-C-7 A-C-8 A-C-9 A-C-0 A-C-- A-C-+ A-C-bspc
- tab q w f p b A-C-j A-C-l A-C-u A-C-y A-C-; A-C-[ A-C-] A-C-\
- esc a r s t g A-C-m A-C-n A-C-e A-C-i A-C-o A-C-' A-C-ret
- _ _ (layer-toggle R1110) _ (layer-toggle R1011) v A-C-k A-C-h A-C-, A-C-. A-C-/
- A-C-spc A-C-left A-C-down A-C-up A-C-right
-)
-
-(deflayer R1011
- grv 1 2 3 4 5 6 A-C-S-7 A-C-S-8 A-C-S-9 A-C-S-0 A-C-S-- A-C-S-+ A-C-S-bspc
- tab q w f p b A-C-S-j A-C-S-l A-C-S-u A-C-S-y A-C-S-; A-C-S-[ A-C-S-] A-C-S-\
- esc a r s t g A-C-S-m A-C-S-n A-C-S-e A-C-S-i A-C-S-o A-C-S-' A-C-S-ret
- _ _ (layer-toggle R1111) _ _ v A-C-S-k A-C-S-h A-C-S-, A-C-S-. A-C-S-/
- A-C-S-spc A-C-S-left A-C-S-down A-C-S-up A-C-S-right
-)
-
-(deflayer R1100
- grv 1 2 3 4 5 6 A-M-7 A-M-8 A-M-9 A-M-0 A-M-- A-M-+ A-M-bspc
- tab q w f p b A-M-j A-M-l A-M-u A-M-y A-M-; A-M-[ A-M-] A-M-\
- esc a r s t g A-M-m A-M-n A-M-e A-M-i A-M-o A-M-' A-M-ret
- _ _ _ (layer-toggle R1110) (layer-toggle R1101) v A-M-k A-M-h A-M-, A-M-. A-M-/
- A-M-spc A-M-left A-M-down A-M-up A-M-right
-)
-
-(deflayer R1101
- grv 1 2 3 4 5 6 A-M-S-7 A-M-S-8 A-M-S-9 A-M-S-0 A-M-S-- A-M-S-+ A-M-S-bspc
- tab q w f p b A-M-S-j A-M-S-l A-M-S-u A-M-S-y A-M-S-; A-M-S-[ A-M-S-] A-M-S-\
- esc a r s t g A-M-S-m A-M-S-n A-M-S-e A-M-S-i A-M-S-o A-M-S-' A-M-S-ret
- _ _ _ (layer-toggle R1111) _ v A-M-S-k A-M-S-h A-M-S-, A-M-S-. A-M-S-/
- A-M-S-spc A-M-S-left A-M-S-down A-M-S-up A-M-S-right
-)
-
-(deflayer R1110
- grv 1 2 3 4 5 6 A-M-C-7 A-M-C-8 A-M-C-9 A-M-C-0 A-M-C-- A-M-C-+ A-M-C-bspc
- tab q w f p b A-M-C-j A-M-C-l A-M-C-u A-M-C-y A-M-C-; A-M-C-[ A-M-C-] A-M-C-\
- esc a r s t g A-M-C-m A-M-C-n A-M-C-e A-M-C-i A-M-C-o A-M-C-' A-M-C-ret
- _ _ _ _ (layer-toggle R1111) v A-M-C-k A-M-C-h A-M-C-, A-M-C-. A-M-C-/
- A-M-C-spc A-M-C-left A-M-C-down A-M-C-up A-M-C-right
-)
-
-(deflayer R1111
- grv 1 2 3 4 5 6 A-M-C-S-7 A-M-C-S-8 A-M-C-S-9 A-M-C-S-0 A-M-C-S-- A-M-C-S-+ A-M-C-S-bspc
- tab q w f p b A-M-C-S-j A-M-C-S-l A-M-C-S-u A-M-C-S-y A-M-C-S-; A-M-C-S-[ A-M-C-S-] A-M-C-S-\
- esc a r s t g A-M-C-S-m A-M-C-S-n A-M-C-S-e A-M-C-S-i A-M-C-S-o A-M-C-S-' A-M-C-S-ret
- _ _ _ _ _ v A-M-C-S-k A-M-C-S-h A-M-C-S-, A-M-C-S-. A-M-C-S-/
- A-M-C-S-spc A-M-C-S-left A-M-C-S-down A-M-C-S-up A-M-C-S-right
-)
-
-
