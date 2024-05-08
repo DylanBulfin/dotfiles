@@ -1,0 +1,6 @@
+*
+!.gitignore
+!nvim/
+!fish/
+!sway/
+!waybar/
