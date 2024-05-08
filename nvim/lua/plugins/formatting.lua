@@ -58,6 +58,7 @@ return {
         -- Mostly defaults work
         formatters_by_ft = {
           lua = { "stylua" },
+          python = { "black" },
         },
         -- When function returns nil format on save is disabled
         format_on_save = function()

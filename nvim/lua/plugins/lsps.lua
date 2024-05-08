@@ -84,7 +84,13 @@ return {
         capabilities = capabilities,
       })
 
+      -- C/C++
       lspconfig.ccls.setup({
+        capabilities = capabilities,
+      })
+
+      -- Python
+      lspconfig.pyright.setup({
         capabilities = capabilities,
       })
     end,
