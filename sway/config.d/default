@@ -27,7 +27,6 @@ set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
 ### Idle configuration
 exec swayidle -w\
-    timeout 1600 'swaylock -f -C ~/.config/swaylock/config'\
     timeout 1000 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
@@ -51,6 +50,7 @@ exec swayidle -w\
 
     # Kill focused window
     bindsym $mod+q kill
+    bindsym $mod+Shift+q kill --signal 9
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -227,3 +227,7 @@ bindsym $mod+r mode "resize"
 # Keybindings List
 #
     bindsym $mod+t exec xed ~/.config/sway/cheatsheet
+
+
+# Set middle monitor as primary for xwayland compatibility
+exec_always xrandr --output DP-1 --primary
