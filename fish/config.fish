@@ -9,24 +9,22 @@ if status is-interactive
     fish_add_path "/home/dylan/.cargo/bin"
     fish_add_path "/home/dylan/.cabal/bin"
     fish_add_path "/home/dylan/.ghcup/bin"
+    fish_add_path "/home/dylan/.local/bin"
 
     set fish_cursor_default block
     set fish_cursor_insert line
     fish_vi_key_bindings
 
     set -U fish_greeting ""
-    set -Ux MANPAGER "env MAN_PN=1 vim -M +MANPAGER -"
+    set -Ux EDITOR nvim
+    set -Ux VISUAL nvim
+    set -Ux BROWSER floorp
 
     bind --mode insert \cF forward-char
     bind --mode insert \e\cz _fzf_z
     bind --mode default \e\cz _fzf_z
     bind --mode visual \e\cz _fzf_z
 
-    # zoxide add ~/**/*/
-    # zoxide add ~/.config/**/*/
-    # zoxide add ~/.scripts
-
     #Should stay at end
-    #Customized script to avoid z falling back on cd behavior
-    cat /home/dylan/.config/fish/.zoxide.fish | source
+    zoxide init fish | source
 end
