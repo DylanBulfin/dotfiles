@@ -11,6 +11,22 @@ SAVEHIST=10000
 setopt appendhistory
 
 alias e='exit'
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias ref='source ~/.zshrc'
+
+# Set up PATH
+path=("/home/dylan/.local/bin")
+path=("/home/dylan/.cargo/bin")
+path=("/home/dylan/.cabal/bin")
+path=("/home/dylan/.ghcup/bin")
+path=("/home/dylan/go/bin")
+export PATH
+
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=floorp
+
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 
