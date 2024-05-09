@@ -1,0 +1,24 @@
+[submodule "zsh/auto-ls"]
+	path = zsh/auto-ls
+	url = https://github.com/desyncr/auto-ls
+[submodule "zsh/catppuccin"]
+	path = zsh/catppuccin
+	url = https://github.com/catppuccin/zsh-syntax-highlighting
+[submodule "zsh/powerlevel10k"]
+	path = zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
+[submodule "zsh/zsh-autocomplete"]
+	path = zsh/zsh-autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete
+[submodule "zsh/zsh-autosuggestions"]
+	path = zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/zsh-history-substring-search"]
+	path = zsh/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "zsh/zsh-syntax-highlighting"]
+	path = zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/zsh-vi-mode"]
+	path = zsh/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode
