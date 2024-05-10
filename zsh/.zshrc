@@ -15,6 +15,14 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 alias ref='source ~/.zshrc'
 
+alias gadd='git add'
+alias gadda='git add *'
+alias gdiff='git diff'
+alias gstat='git status'
+alias gcomm='git commit -m'
+alias gpush='git push'
+alias gpull='git pull'
+
 function zvm_after_init() {
   # Set up fzf key bindings and fuzzy completion
   eval "$(fzf --zsh)"
@@ -22,10 +30,7 @@ function zvm_after_init() {
   bindkey '^I' menu-complete
   bindkey '^F' vi-forward-char
   bindkey '^H' backward-kill-word
-}
-
-+autocomplete:recent-directories() {
-  reply=(${(f)"$(zoxide query -l)"})
+  bindkey '^K' kill-line
 }
 
 # Set up PATH
@@ -49,14 +54,14 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(zoxide init zsh)"
-zstyle ':autocomplete:recent-paths:*' list-lines 4
-
 source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(zoxide init zsh)"
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M menuselect '^[' undo
 bindkey '^[[Z' reverse-menu-complete
+
