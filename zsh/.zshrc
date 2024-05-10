@@ -18,6 +18,8 @@ alias ref='source ~/.zshrc'
 function zvm_after_init() {
   # Set up fzf key bindings and fuzzy completion
   eval "$(fzf --zsh)"
+
+  bindkey '^I' menu-complete
 }
 
 # Set up PATH
@@ -47,4 +49,7 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 bindkey -M menuselect '^[' undo
+bindkey '^[[Z' reverse-menu-complete
+
