@@ -20,6 +20,12 @@ function zvm_after_init() {
   eval "$(fzf --zsh)"
 
   bindkey '^I' menu-complete
+  bindkey '^F' vi-forward-char
+  bindkey '^H' backward-kill-word
+}
+
++autocomplete:recent-directories() {
+  reply=(${(f)"$(zoxide query -l)"})
 }
 
 # Set up PATH
@@ -44,6 +50,8 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(zoxide init zsh)"
+zstyle ':autocomplete:recent-paths:*' list-lines 4
+
 source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -52,4 +60,3 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M menuselect '^[' undo
 bindkey '^[[Z' reverse-menu-complete
-
