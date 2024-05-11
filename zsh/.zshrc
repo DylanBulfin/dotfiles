@@ -5,45 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
-
-alias e='exit'
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias ref='source ~/.zshrc'
-
-alias gadd='git add'
-alias gadda='git add *'
-alias gdiff='git diff'
-alias gstat='git status'
-alias gcomm='git commit -m'
-alias gpush='git push'
-alias gpull='git pull'
+source ~/.zsh/env.zsh
+source ~/.zsh/aliases.zsh
 
 function zvm_after_init() {
   # Set up fzf key bindings and fuzzy completion
   eval "$(fzf --zsh)"
 
-  bindkey '^I' menu-complete
-  bindkey '^F' vi-forward-char
-  bindkey '^H' backward-kill-word
-  bindkey '^K' kill-line
+  # Needs to be sourced here to avoid bindings being overwritten
+  source ~/.zsh/keybinds.zsh
 }
-
-# Set up PATH
-path+=("/home/dylan/.local/bin")
-path+=("/home/dylan/.cargo/bin")
-path+=("/home/dylan/.cabal/bin")
-path+=("/home/dylan/.ghcup/bin")
-path+=("/home/dylan/go/bin")
-export PATH
-
-export EDITOR=nvim
-export VISUAL=nvim
-export BROWSER=floorp
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
@@ -60,8 +31,3 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(zoxide init zsh)"
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M menuselect '^[' undo
-bindkey '^[[Z' reverse-menu-complete
-
