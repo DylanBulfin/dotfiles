@@ -14,8 +14,6 @@ return {
     config = function()
       local configs = require("nvim-treesitter.configs")
 
-      require("vim.treesitter.query").set("haskell", "textobjects", "")
-
       configs.setup({
         ensure_installed = {
           "bash",
@@ -85,6 +83,8 @@ return {
           },
         },
       })
+
+      require("vim.treesitter.query").set("haskell", "textobjects", "")
 
       local rp = require("nvim-treesitter.textobjects.repeatable_move")
 
