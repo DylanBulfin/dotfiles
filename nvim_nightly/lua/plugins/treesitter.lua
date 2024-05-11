@@ -14,6 +14,8 @@ return {
     config = function()
       local configs = require("nvim-treesitter.configs")
 
+      require("vim.treesitter.query").set("haskell", "textobjects", "")
+
       configs.setup({
         ensure_installed = {
           "bash",

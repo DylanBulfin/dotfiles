@@ -16,9 +16,8 @@ if [[ -e "/usr/local/bin/nvim" ]]; then
         echo "Failed to link neovim stable config"
         exit 1
     fi
-    rm -rf /home/dylan/.cache/nvim
-    rm -rf /home/dylan/.local/share/nvim
-    rm -rf /home/dylan/.local/state/nvim
+    
+    /home/dylan/.scripts/clean-nvim.sh
 else
     if ! sudo mv /usr/local/bin/_nvim /usr/local/bin/nvim; then
         echo "Error registering neovim nightly"
@@ -33,7 +32,6 @@ else
         echo "Failed to link neovim nightly config"
         exit 1
     fi
-    rm -rf /home/dylan/.cache/nvim
-    rm -rf /home/dylan/.local/share/nvim
-    rm -rf /home/dylan/.local/state/nvim
+
+    /home/dylan/.scripts/clean-nvim.sh
 fi
