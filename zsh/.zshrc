@@ -8,6 +8,8 @@ fi
 source ~/.zsh/env.zsh
 source ~/.zsh/aliases.zsh
 
+fpath+=~/.zsh/completions
+
 function zvm_after_init() {
   # Set up fzf key bindings and fuzzy completion
   eval "$(fzf --zsh)"
