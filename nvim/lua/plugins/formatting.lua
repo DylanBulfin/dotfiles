@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("User", {
 
 -- Set tabstop to 4 for certain filetypes
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "cs", "haskell", "javascript", "typescript", "typescriptreact" },
+  pattern = { "cs", "haskell", "javascript", "typescript", "typescriptreact", "sh" },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
