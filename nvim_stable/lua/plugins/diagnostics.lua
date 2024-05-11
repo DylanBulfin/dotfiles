@@ -5,7 +5,7 @@ return {
       { "kevinhwang91/promise-async" },
       {
         "luukvbaal/statuscol.nvim",
-        branch = "0.10",
+        -- branch = "0.10",
         config = function()
           local builtin = require("statuscol.builtin")
           -- Fix bg colors for sign/fold columns
