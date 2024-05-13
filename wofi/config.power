@@ -1,0 +1,9 @@
+hide_search=true
+hide_scroll=true
+insensitive=true
+show=dmenu
+width=100
+lines=4
+location=bottom_right
+x=-114
+y=-20
