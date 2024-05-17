@@ -13,6 +13,8 @@ return {
         debouce = 100,
         keymap = {
           accept = "<C-f>",
+          accept_word = "<C-w>",
+          accept_line = "<C-l>",
           next = "<C-n>",
           prev = "<C-p>",
         },
