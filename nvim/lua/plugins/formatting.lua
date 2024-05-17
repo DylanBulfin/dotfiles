@@ -95,6 +95,7 @@ return {
         around_last = "al",
         inside_last = "ul",
       },
+      n_lines = 200,
       custom_textobjects = {
         u = function(mode)
           -- count whitespace characters at beginning of current line
