@@ -1,6 +1,11 @@
 vim.g.mapleader = " " -- Space as leader
 vim.g.maplocalleader = "\\"
 
+if vim.g.vscode then
+  require("vscode")
+  return
+end
+
 -- Lazy setup, leave alone
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
