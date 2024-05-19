@@ -15,3 +15,5 @@ export PATH
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=floorp
+
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
