@@ -1,4 +1,5 @@
 import csv
+import sys
 
 vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "!editorFocus && !inputFocus"\n'
 nvim_format = 'vim.keymap.set({}, "{}", call("{}"))'
@@ -47,4 +48,12 @@ def gen_nvim_config():
                 print (gen_nvim_binding('v', is_space, keys, command))
 
 # gen_vscode_config()
-gen_nvim_config()
+# gen_nvim_config()
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'vscode':
+        gen_vscode_config()
+    elif sys.argv[1] == 'nvim':
+        gen_nvim_config()
+    else:
+        print('Invalid argument')
