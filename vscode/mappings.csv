@@ -1,0 +1,16 @@
+"nv", 1, "q q",    "workbench.action.quit"
+"nv", 1, "f t",    "workbench.action.toggleSidebarVisibility"      
+"nv", 1, "b s",    "workbench.action.files.save"                   
+"nv", 1, "b c",    "workbench.action.closeActiveEditor"            
+"nv", 1, "space",  "workbench.action.quickOpen"                    
+"nv", 1, "f g",    "workbench.action.findInFiles"                  
+"nv", 1, "f p",    "workbench.action.showCommands"                 
+"nv", 1, "c c",    "workbench.panel.chat.view.copilot.focus"       
+"nv", 1, "c t",    "github.copilot.toggleCopilot"                  
+
+"nv", 1, "v m",    "workbench.views.extensions.marketplace.focus"  
+"nv", 1, "v e",    "workbench.view.explorer"                       
+"nv", 1, "v t",    "workbench.action.focusAuxiliaryBar"            
+
+"nv", 1, "w q",    "workbench.action.closeEditorsAndGroup"         
+"nv", 1, "w o",    "workbench.action.closeEditorsInOtherGroups"    
