@@ -1,8 +1,3 @@
-if vim.g.vscode then
-  require("vscode")
-  return
-end
-
 vim.g.mapleader = " " -- Space as leader
 vim.g.maplocalleader = "\\"
 
