@@ -1,0 +1,260 @@
+    "whichkey.bindings": [
+        {
+            "key": " ",
+            "name": "File Picker",
+            "type": "command",
+            "command": "workbench.action.quickOpen"
+        },
+        {
+            "key": "b",
+            "name": "+Buffer",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "c",
+                    "name": "Close Buffer",
+                    "type": "command",
+                    "command": "workbench.action.closeActiveEditor"
+                },
+                {
+                    "key": "s",
+                    "name": "Save Buffer",
+                    "type": "command",
+                    "command": "workbench.action.files.save"
+                },
+                {
+                    "key": "f",
+                    "name": "Format Buffer",
+                    "type": "command",
+                    "command": "editor.action.formatDocument"
+                }
+            ]
+        },
+        {
+            "key": "c",
+            "name": "+Code/Copilot",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "a",
+                    "name": "Code Actions",
+                    "type": "command",
+                    "command": "editor.action.quickFix"
+                }
+            ]
+        },
+        {
+            "key": "f",
+            "name": "+File",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "c",
+                    "name": "Command Palette Picker",
+                    "type": "command",
+                    "command": "workbench.action.showCommands"
+                },
+                {
+                    "key": "f",
+                    "name": "File Picker",
+                    "type": "command",
+                    "command": "workbench.action.quickOpen"
+                },
+                {
+                    "key": "s",
+                    "name": "Symbol Picker",
+                    "type": "command",
+                    "command": "workbench.action.gotoSymbol"
+                }
+            ]
+        },
+        {
+            "key": "F",
+            "name": "Format Document",
+            "type": "command",
+            "command": "editor.action.formatDocument"
+        },
+        {
+            "key": "n",
+            "name": "Next Buffer",
+            "type": "command",
+            "command": "workbench.action.nextEditor"
+        },
+        {
+            "key": "N",
+            "name": "Previous Buffer",
+            "type": "command",
+            "command": "workbench.action.previousEditor"
+        },
+        {
+            "key": "p",
+            "name": "peek",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "d",
+                    "name": "Definition",
+                    "type": "command",
+                    "command": "editor.action.peekDefinition"
+                },
+                {
+                    "key": "r",
+                    "name": "References",
+                    "type": "command",
+                    "command": "editor.action.referenceSearch.trigger"
+                }
+            ]
+        },
+        {
+            "key": "q",
+            "name": "+Quit",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "q",
+                    "name": "Quit",
+                    "type": "command",
+                    "command": "workbench.action.quit"
+                },
+                {
+                    "key": "Q",
+                    "name": "Quit Without Saving",
+                    "type": "command",
+                    "command": "workbench.action.closeWindow"
+                }
+            ]
+        },
+        {
+            "key": "r",
+            "name": "+Rename",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "n",
+                    "name": "Rename",
+                    "type": "command",
+                    "command": "editor.action.rename"
+                }
+            ]
+        },
+        {
+            "key": "v",
+            "name": "+View",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "c",
+                    "name": "Focus Copilot Chat",
+                    "type": "command",
+                    "command": "workbench.panel.chat.view.copilot.focus"
+                },
+                {
+                    "key": "e",
+                    "name": "Focus Explorer",
+                    "type": "command",
+                    "command": "workbench.view.explorer"
+                },
+                {
+                    "key": "f",
+                    "name": "Toggle Primary Sidebar",
+                    "type": "command",
+                    "command": "workbench.action.toggleSidebarVisibility"
+                },
+                {
+                    "key": "p",
+                    "name": "Toggle Panel",
+                    "type": "command",
+                    "command": "workbench.action.togglePanel"
+                },
+                {
+                    "key": "v",
+                    "name": "Focus Editor",
+                    "type": "command",
+                    "command": "workbench.action.focusActiveEditorGroup"
+                }
+            ]
+        },
+        {
+            "key": "w",
+            "name": "+Window",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "h",
+                    "name": "Split Window Below",
+                    "type": "command",
+                    "command": "workbench.action.splitEditorDown"
+                },
+                {
+                    "key": "v",
+                    "name": "Split Window Right",
+                    "type": "command",
+                    "command": "workbench.action.splitEditorRight"
+                },
+                {
+                    "key": "o",
+                    "name": "Close Other Windows",
+                    "type": "command",
+                    "command": "workbench.action.closeEditorsInOtherGroups"
+                },
+                {
+                    "key": "a",
+                    "name": "Close All But Top Left Group",
+                    "type": "commands",
+                    "commands": [
+                        "workbench.action.focusFirstEditorGroup",
+                        "workbench.action.closeEditorsInOtherGroups",
+                    ]
+                },
+                {
+                    "key": "m",
+                    "name": "Focus Window Left",
+                    "type": "command",
+                    "command": "workbench.action.focusLeftGroup"
+                },
+                {
+                    "key": "n",
+                    "name": "Focus Window Down",
+                    "type": "command",
+                    "command": "workbench.action.focusBelowGroup"
+                },
+                {
+                    "key": "e",
+                    "name": "Focus Window Up",
+                    "type": "command",
+                    "command": "workbench.action.focusAboveGroup"
+                },
+                {
+                    "key": "i",
+                    "name": "Focus Window Right",
+                    "type": "command",
+                    "command": "workbench.action.focusRightGroup"
+                },
+            ]
+        },
+        {
+            "key": "x",
+            "name": "+Diagnostics",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "x",
+                    "name": "Show Problems",
+                    "type": "command",
+                    "command": "workbench.action.problems.focus"
+                },
+                {
+                    "key": "n",
+                    "name": "Next Problem",
+                    "type": "command",
+                    "command": "editor.action.marker.next"
+                },
+                {
+                    "key": "p",
+                    "name": "Previous Problem",
+                    "type": "command",
+                    "command": "editor.action.marker.prev"
+                }
+            ]
+        },
+    ],

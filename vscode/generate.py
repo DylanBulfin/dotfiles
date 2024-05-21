@@ -1,16 +1,17 @@
 import csv
 import sys
 
-vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "!editorFocus && !inputFocus"\n'
+vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!terminalFocus && !inputFocus) || (!terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (vim.mode == \'Normal\' || vim.mode == \'Visual\'))"\n'
 nvim_format = 'vim.keymap.set({}, "{}", call("{}"))'
 
 def gen_vscode_binding(is_space, key, command):
-    if is_space:
+    if '1' in str(is_space):
         return '  {\n' + vscode_format.format('space ' + key, command) + '  },'
     else:
         return '  {\n' + vscode_format.format(key, command) + '  },'
 
 def gen_vscode_config():
+    count = 0
     with open('mappings.csv', newline='') as file:
         reader = csv.reader(file)
         for line in reader:
@@ -21,6 +22,7 @@ def gen_vscode_config():
             command = line[3].replace('"', '').strip()
 
             print (gen_vscode_binding(is_space, keys, command))
+            count += 1
 
 def nvim_key_format(key):
     keys = [x.replace("space", "<leader>") for x in key.split(' ')]
