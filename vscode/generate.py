@@ -1,61 +1,73 @@
 import csv
 import sys
 
-vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!terminalFocus && !inputFocus) || (!terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (vim.mode == \'Normal\' || vim.mode == \'Visual\'))"\n'
-nvim_format = 'vim.keymap.set({}, "{}", call("{}"))'
+vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!terminalFocus && !inputFocus) || (!terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (neovim.mode == normal || neovim.mode == visual))"\n'
+nvim_format = 'vim.keymap.set("{}", "{}", call("{}"))\n'
+
 
 def gen_vscode_binding(is_space, key, command):
-    if '1' in str(is_space):
-        return '  {\n' + vscode_format.format('space ' + key, command) + '  },'
+    if "1" in str(is_space):
+        return "  {\n" + vscode_format.format("space " + key, command) + "  },"
     else:
-        return '  {\n' + vscode_format.format(key, command) + '  },'
+        return ""
+
 
 def gen_vscode_config():
     count = 0
-    with open('mappings.csv', newline='') as file:
+    with open("mappings.csv", newline="") as file:
         reader = csv.reader(file)
         for line in reader:
             if len(line) != 4:
                 continue
             is_space = line[1]
-            keys = line[2].replace('"', '').strip()
-            command = line[3].replace('"', '').strip()
+            keys = line[2].replace('"', "").strip()
+            command = line[3].replace('"', "").strip()
 
-            print (gen_vscode_binding(is_space, keys, command))
-            count += 1
+            res = gen_vscode_binding(is_space, keys, command)
+            if res != "":
+                print(res)
+
 
 def nvim_key_format(key):
-    keys = [x.replace("space", "<leader>") for x in key.split(' ')]
-    return ''.join(keys)
+    keys = [x.replace("space", "<space>") for x in key.split(" ")]
+    return "".join(keys)
+
 
 def gen_nvim_binding(mode, is_space, key, command):
-    if is_space:
-        return nvim_format.format(mode, '<space>' + nvim_key_format(key), command)
+    if "1" in str(is_space):
+        return ""
     else:
         return nvim_format.format(mode, nvim_key_format(key), command)
 
+
 def gen_nvim_config():
-    with open('mappings.csv', newline='') as file:
+    with open("mappings.csv", newline="") as file:
         reader = csv.reader(file)
         for line in reader:
             if len(line) != 4:
                 continue
             is_space = line[1]
-            keys = line[2].replace('"', '').strip()
-            command = line[3].replace('"', '').strip()
+            keys = line[2].replace('"', "").strip()
+            command = line[3].replace('"', "").strip()
 
-            if 'n' in line[0]:
-                print (gen_nvim_binding('n', is_space, keys, command))
-            if 'v' in line[0]:
-                print (gen_nvim_binding('v', is_space, keys, command))
+            res = ""
+
+            if "n" in line[0]:
+                res += gen_nvim_binding("n", is_space, keys, command)
+            if "v" in line[0]:
+                res += gen_nvim_binding("v", is_space, keys, command)
+
+            if res != "":
+                print(res)
+
 
 # gen_vscode_config()
 # gen_nvim_config()
 
-if __name__ == '__main__':
-    if sys.argv[1] == 'vscode':
+if __name__ == "__main__":
+    if sys.argv[1] == "vscode":
         gen_vscode_config()
-    elif sys.argv[1] == 'nvim':
+    elif sys.argv[1] == "nvim":
         gen_nvim_config()
     else:
-        print('Invalid argument')
+        print("Invalid argument")
