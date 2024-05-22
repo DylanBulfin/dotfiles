@@ -28,7 +28,7 @@ return {
       })
     end,
   },
-  { "Theyashsawarkar/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons", opts = {} },
+  { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons", opts = {} },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "nanotee/zoxide.vim",
