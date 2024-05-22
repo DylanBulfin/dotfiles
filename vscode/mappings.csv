@@ -5,9 +5,9 @@
 "nv" ,1 ,"b f"       ,"editor.action.formatDocument"
 
 "nv" ,1 ,"c a"       ,"editor.action.quickFix"
-"nv", 1 ,"c p"       ,"inlineChat.start"
-"nv", 1, "c r"       ,"editor.action.refactor"
-"nv", 1, "c "
+"nv" ,1 ,"c p"       ,"inlineChat.start"
+"nv" ,1 ,"c t"       ,"github.copilot.toggleCopilot"
+
 
 "nv" ,1 ,"f f"       ,"workbench.action.quickOpen"
 "nv" ,1 ,"f p"       ,"workbench.action.showCommands"
@@ -49,8 +49,16 @@
 "nv" ,1 ,"y"         ,"editor.action.clipboardCopyAction"
 
 
+"nv" ,0 ,"<CR>"      ,"editor.action.smartSelect.expand"
+"nv" ,0 ,"<S-CR>"    ,"editor.action.smartSelect.shrink"
 
 "nv" ,0 ,"g d"       ,"editor.action.revealDefinition"
 "nv" ,0 ,"g g"       ,"cursorTop"
 "nv" ,0 ,"g i"       ,"editor.action.goToImplementation"
 "nv" ,0 ,"g r"       ,"editor.action.goToReferences"
+
+"nv", 0, "z a c"       ,"editor.foldAll"
+"nv", 0, "z a e"       ,"editor.unfoldAll"
+"nv", 0, "z o", "editor.foldAllExcept"
+"nv", 0, "z c", "editor.fold"
+"nv", 0, "z e", "editor.unfold"

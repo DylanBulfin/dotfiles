@@ -1,9 +1,8 @@
 import csv
 import sys
 
-vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!terminalFocus && !inputFocus) || (!terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (neovim.mode == normal || neovim.mode == visual))"\n'
+vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!inlineChatVisible && !terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (neovim.mode == normal || neovim.mode == visual))"\n'
 nvim_format = 'vim.keymap.set("{}", "{}", call("{}"))\n'
-
 
 def gen_vscode_binding(is_space, key, command):
     if "1" in str(is_space):
