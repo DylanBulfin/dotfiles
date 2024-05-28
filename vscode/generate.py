@@ -1,12 +1,14 @@
 import csv
 import sys
 
-vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": "(!inlineChatVisible && !terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (neovim.mode == normal || neovim.mode == visual))"\n'
+vscode_predicate = '"!inSettingsEditor && !chatInputHasFocus && !inlineChatVisible && !terminalFocus && !inQuickOpen && !renameInputVisible && !inputBoxFocus && (neovim.mode == normal || neovim.mode == visual)"'
+
+vscode_format = '    "key": "{}",\n    "command": "{}",\n    "when": {}\n'
 nvim_format = 'vim.keymap.set("{}", "{}", call("{}"))\n'
 
 def gen_vscode_binding(is_space, key, command):
     if "1" in str(is_space):
-        return "  {\n" + vscode_format.format("space " + key, command) + "  },"
+        return "  {\n" + vscode_format.format("space " + key, command, vscode_predicate) + "  },"
     else:
         return ""
 
