@@ -71,7 +71,6 @@ return {
   },
   {
     "folke/trouble.nvim",
-    branch = "dev",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       vim.keymap.set("n", "<leader>xx", function()
