@@ -43,13 +43,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      { "folke/neodev.nvim", opts = {} },
-    },
+    dependencies = {},
     config = function()
       -- Needs to be loaded before lspconfig, that's the only reason it's in this file
-      require("neodev").setup()
-
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       -- Required for ufo plugin. Make sure to add `capabilities=capabilities` to any new server
@@ -69,6 +65,7 @@ return {
         },
         capabilities = capabilities,
       })
+
       -- Lua
       lspconfig.lua_ls.setup({
         settings = {
@@ -128,6 +125,13 @@ return {
           vim.keymap.set("n", "<leader>lq", ht.repl.quit, opts("Quit GHCi"))
         end,
       })
+    end,
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    config = function()
+      require("lazydev").setup()
     end,
   },
 }
