@@ -10,6 +10,7 @@
 
 
 "nv" ,1 ,"f f"       ,"workbench.action.quickOpen"
+"nv" ,1 ,"f g"       ,"workbench.action.findInFiles"
 "nv" ,1 ,"f p"       ,"workbench.action.showCommands"
 "nv" ,1 ,"f s"       ,"workbench.action.gotoSymbol"
 
