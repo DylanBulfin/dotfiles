@@ -1,6 +1,8 @@
 "nv" ,1 ,"space"     ,"workbench.action.quickOpen"
 
+"nv" ,1 ,"b a"       ,"workbench.action.closeAllEditors"
 "nv" ,1 ,"b c"       ,"workbench.action.closeActiveEditor"
+"nv" ,1 ,"b o"       ,"workbench.action.closeOtherEditors"
 "nv" ,1 ,"b s"       ,"workbench.action.files.save"
 "nv" ,1 ,"b f"       ,"editor.action.formatDocument"
 
@@ -8,6 +10,8 @@
 "nv" ,1 ,"c p"       ,"inlineChat.start"
 "nv" ,1 ,"c t"       ,"github.copilot.toggleCopilot"
 
+"nv" ,1 ,"d c"       ,"workbench.action.closeFolder"
+"nv" ,1 ,"d o"       ,"workbench.action.files.openFolder"
 
 "nv" ,1 ,"f f"       ,"workbench.action.quickOpen"
 "nv" ,1 ,"f g"       ,"workbench.action.findInFiles"
@@ -58,8 +62,8 @@
 "nv" ,0 ,"g i"       ,"editor.action.goToImplementation"
 "nv" ,0 ,"g r"       ,"editor.action.goToReferences"
 
-"nv", 0, "z a c"       ,"editor.foldAll"
-"nv", 0, "z a e"       ,"editor.unfoldAll"
-"nv", 0, "z o", "editor.foldAllExcept"
-"nv", 0, "z c", "editor.fold"
-"nv", 0, "z e", "editor.unfold"
+"nv" ,0 ,"z a c"     ,"editor.foldAll"
+"nv" ,0 ,"z a e"     ,"editor.unfoldAll"
+"nv" ,0 ,"z o"       ,"editor.foldAllExcept"
+"nv" ,0 ,"z c"       ,"editor.fold"
+"nv" ,0 ,"z e"       ,"editor.unfold"
