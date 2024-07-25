@@ -10,21 +10,31 @@
 "nv" ,1 ,"c p"       ,"inlineChat.start"
 "nv" ,1 ,"c t"       ,"github.copilot.toggleCopilot"
 
-"nv" ,1 ,"d c"       ,"workbench.action.closeFolder"
-"nv" ,1 ,"d o"       ,"workbench.action.files.openFolder"
+"nv" ,1 ,"d a"       ,"workbench.debug.viewlet.action.removeAllBreakpoints"
+"nv" ,1 ,"d b"       ,"editor.debug.action.toggleInlineBreakpoint"
+"nv" ,1 ,"d c"       ,"workbench.action.debug.continue"
+"nv" ,1 ,"d p"       ,"workbench.action.debug.pause"
+"nv" ,1 ,"d q"       ,"workbench.action.debug.stop"
+"nv" ,1 ,"d r"       ,"workbench.action.debug.restart"
+"nv" ,1 ,"d s"       ,"workbench.action.debug.start"
+
+"nv" ,1 ,"f c"       ,"workbench.action.closeFolder"
+"nv" ,1 ,"f o"       ,"workbench.action.files.openFolder"
 
 "nv" ,1 ,"f f"       ,"workbench.action.quickOpen"
 "nv" ,1 ,"f g"       ,"workbench.action.findInFiles"
 "nv" ,1 ,"f p"       ,"workbench.action.showCommands"
 "nv" ,1 ,"f s"       ,"workbench.action.gotoSymbol"
+"nv" ,1 ,"f y"       ,"notifications.clearAll"
 
 "nv" ,1 ,"shift+f"   ,"editor.action.formatDocument"
+
 "nv" ,1 ,"n"         ,"workbench.action.nextEditor"
 "nv" ,1 ,"shift+n"   ,"workbench.action.previousEditor"
 
-"nv" ,1 ,"p"         ,"editor.action.clipboardPasteAction"
-"nv" ,1 ,"shift+p d" ,"editor.action.peekDefinition"
-"nv" ,1 ,"shift+p r" ,"editor.action.referenceSearch.trigger"
+"nv" ,1 ,"shift+p"   ,"editor.action.clipboardPasteAction"
+"nv" ,1 ,"p d"       ,"editor.action.peekDefinition"
+"nv" ,1 ,"p r"       ,"editor.action.referenceSearch.trigger"
 
 "nv" ,1 ,"q q"       ,"workbench.action.quit"
 "nv" ,1 ,"q shift+f" ,"workbench.action.closeWindow"
@@ -32,6 +42,7 @@
 "nv" ,1 ,"r n"       ,"editor.action.rename"
 
 "nv" ,1 ,"v c"       ,"workbench.panel.chat.view.copilot.focus"
+"nv" ,1 ,"v d"       ,"workbench.view.debug"
 "nv" ,1 ,"v e"       ,"workbench.view.explorer"
 "nv" ,1 ,"v f"       ,"workbench.action.toggleSidebarVisibility"
 "nv" ,1 ,"v p"       ,"workbench.action.togglePanel"
