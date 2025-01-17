@@ -1,24 +1,24 @@
-[submodule "zsh/auto-ls"]
-	path = zsh/auto-ls
-	url = https://github.com/desyncr/auto-ls
-[submodule "zsh/catppuccin"]
-	path = zsh/catppuccin
+[submodule "zsh/plugins/zsh-autocomplete"]
+	path = zsh/plugins/zsh-autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete.git
+[submodule "zsh/plugins/catppuccin"]
+	path = zsh/plugins/catppuccin
 	url = https://github.com/catppuccin/zsh-syntax-highlighting
-[submodule "zsh/powerlevel10k"]
-	path = zsh/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k
-[submodule "zsh/zsh-autocomplete"]
-	path = zsh/zsh-autocomplete
-	url = https://github.com/marlonrichert/zsh-autocomplete
-[submodule "zsh/zsh-autosuggestions"]
-	path = zsh/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/zsh-history-substring-search"]
-	path = zsh/zsh-history-substring-search
-	url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule "zsh/zsh-syntax-highlighting"]
-	path = zsh/zsh-syntax-highlighting
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "zsh/zsh-vi-mode"]
-	path = zsh/zsh-vi-mode
-	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh/plugins/zsh-vi-mode"]
+	path = zsh/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode.git
+[submodule "zsh/plugins/auto-ls"]
+	path = zsh/plugins/auto-ls
+	url = https://github.com/desyncr/auto-ls.git
+[submodule "zsh/plugins/powerlevel10k"]
+	path = zsh/plugins/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "zsh/plugins/zsh-history-substring-search"]
+	path = zsh/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
