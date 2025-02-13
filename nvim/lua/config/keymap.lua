@@ -79,3 +79,5 @@ vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer
 vim.keymap.set("n", "<leader>F", function()
   require("conform").format()
 end, { desc = "Format document" })
+
+vim.keymap.set("n", "<leader>bc", "<Cmd>bd", { desc = "Close current buffer" })

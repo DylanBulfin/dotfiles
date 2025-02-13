@@ -9,3 +9,7 @@ export VISUAL=nvim
 export BROWSER=firefox
 
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
+path+=('/opt/homebrew/bin')
+
+export PATH

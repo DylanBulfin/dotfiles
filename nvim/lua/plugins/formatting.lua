@@ -79,7 +79,17 @@ return {
     "echasnovski/mini.surround",
     version = false,
     config = function()
-      require("mini.surround").setup()
+      require("mini.surround").setup({
+        -- Module mappings. Use `''` (empty string) to disable one.
+        mappings = {
+          update_n_lines = "", -- Update `n_lines`
+          suffix_last = "", -- Suffix to search with "prev" method
+          suffix_next = "", -- Suffix to search with "next" method
+        },
+
+        -- Number of lines within which surrounding is searched
+        n_lines = 50,
+      })
     end,
   },
   {
