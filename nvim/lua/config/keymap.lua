@@ -48,8 +48,7 @@ local to_one_window = function()
 end
 
 -- Add ctrl-backspace mapping in insert mode
-vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete previous word" })
-vim.keymap.set("c", "<C-BS>", "<C-w>", { desc = "Delete previous word" })
+vim.keymap.set("i", "<A-BS>", "<C-w>", { desc = "Delete previous word" })
 
 -- Close all except main window on current tabpage (insert mode mapping for telescope)
 vim.keymap.set({ "n", "i" }, "<C-w>a", to_one_window, { noremap = false, desc = "Close all but main window" })
@@ -80,4 +79,4 @@ vim.keymap.set("n", "<leader>F", function()
   require("conform").format()
 end, { desc = "Format document" })
 
-vim.keymap.set("n", "<leader>bc", "<Cmd>bd", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>bc", "<Cmd>bd<CR>", { desc = "Close current buffer" })

@@ -59,6 +59,8 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "black" },
+          godot = { lsp_format = true },
+          gdscript = { lsp_format = true },
         },
         -- When function returns nil format on save is disabled
         format_on_save = function()
