@@ -40,6 +40,18 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Set tab width to 4 for certain languages",
 })
 
+-- Set tabstop to 4 for certain filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gdscript", "gd", "godot", "py", "python" },
+  callback = function()
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 0
+  end,
+  group = general,
+  desc = "Disable spaces for certain file types",
+})
+
 vim.g.disable_autoformat = false
 vim.keymap.set("n", "<leader>tf", function()
   if vim.g.disable_autoformat then

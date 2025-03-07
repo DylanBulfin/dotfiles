@@ -11,6 +11,15 @@ return {
       { "gbrlsnchs/telescope-lsp-handlers.nvim" },
       { "luc-tielen/telescope_hoogle" },
       { "nvim-telescope/telescope-ui-select.nvim" },
+      {
+        "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
+        config = function() end,
+        dependencies = {
+          "kkharji/sqlite.lua",
+          { "nvim-telescope/telescope-fzy-native.nvim" },
+        },
+      },
     },
     config = function()
       require("telescope").setup({
@@ -22,7 +31,10 @@ return {
       })
       -- Base telescope picker keymaps
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
+      -- vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
+      vim.keymap.set("n", "<leader><leader>", function()
+        require("telescope").extensions.smart_open.smart_open()
+      end, { desc = "Find Files" })
       vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Find in workspace" })
       vim.keymap.set({ "n", "v" }, "<leader>bb", builtin.buffers, { desc = "List buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "View help tags" })
@@ -45,6 +57,7 @@ return {
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("lsp_handlers")
       require("telescope").load_extension("ui-select")
+      require("telescope").load_extension("smart_open")
     end,
   },
 }
