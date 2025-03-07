@@ -28,8 +28,11 @@ function zvm_after_init() {
 
   # ^S
   zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
-
+  #
   zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+  
+  # Disable expansions, based on https://github.com/marlonrichert/zsh-autocomplete/issues/759
+  zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
 }
 
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
