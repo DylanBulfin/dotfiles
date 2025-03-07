@@ -11,5 +11,7 @@ export BROWSER=firefox
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 path+=('/opt/homebrew/bin')
+path+=('/home/dylan/.local/bin')
+path+=('/home/dylan/.cargo/bin')
 
 export PATH

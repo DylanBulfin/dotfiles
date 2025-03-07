@@ -20,20 +20,20 @@ vim.keymap.set({ "n", "v" }, "gI", "$", { desc = "Go to end of line" })
 
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
-  vim.cmd.normal('"*y')
+  vim.cmd.normal('"+y')
 end, { desc = "Yank to system clipboard" })
 
 -- Basically acts as an alias, <space>y can be used in place of "*y, including with motions/textobjectss
 vim.keymap.set("n", "<leader>y", function()
-  return '"*y'
+  return '"+y'
 end, { expr = true, desc = "Yank to system clipboard" })
 
 vim.keymap.set("n", "<leader>p", function()
-  vim.cmd.normal('"*p')
+  vim.cmd.normal('"+p')
 end, { desc = "Paste from system clipboard" })
 
 vim.keymap.set("n", "<leader>P", function()
-  vim.cmd.normal('"*P')
+  vim.cmd.normal('"+P')
 end, { desc = "Paste from system clipboard" })
 
 local to_one_window = function()

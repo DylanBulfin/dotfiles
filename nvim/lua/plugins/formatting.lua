@@ -59,8 +59,8 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "black" },
-          godot = { lsp_format = true },
-          gdscript = { lsp_format = true },
+          godot = { "gdformat" },
+          gdscript = { "gdformat" },
         },
         -- When function returns nil format on save is disabled
         format_on_save = function()
@@ -100,90 +100,14 @@ return {
     opts = {
       mappings = {
         around = "a",
-        inside = "u",
+        inside = "i",
 
         around_next = "an",
-        inside_next = "un",
+        inside_next = "in",
         around_last = "al",
-        inside_last = "ul",
+        inside_last = "il",
       },
       n_lines = 200,
-      custom_textobjects = {
-        u = function(mode)
-          -- count whitespace characters at beginning of current line
-          local function get_indent(line)
-            local _, indent = string.find(line, "^%s*")
-            return indent
-          end
-
-          local region_start = nil
-          local region_end = nil
-
-          local start_lnum = vim.fn.line(".") -- line of cursor
-          local start_indent = get_indent(vim.fn.getline(start_lnum))
-
-          local last_lnum = vim.fn.line("$") -- last line of file
-
-          local curr_lnum = start_lnum - 1
-
-          -- Seach backwards for start of region
-          while true do
-            if curr_lnum <= 1 then -- start of file
-              region_start = 1
-              break
-            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then -- reached start of region
-              region_start = curr_lnum + 1
-              break
-            else
-              curr_lnum = curr_lnum - 1
-            end
-          end
-
-          curr_lnum = start_lnum + 1
-
-          while true do
-            if curr_lnum >= last_lnum then -- end of file
-              region_end = last_lnum
-              break
-            elseif get_indent(vim.fn.getline(curr_lnum)) < start_indent then -- reached end of region
-              region_end = curr_lnum - 1
-              break
-            else
-              curr_lnum = curr_lnum + 1
-            end
-          end
-
-          -- Should never happen
-          if (region_start == nil) or (region_end == nil) then
-            vim.notify("Error calculating region")
-            return
-          end
-
-          local from, to
-          if mode == "i" then -- inside mode used
-            from = {
-              line = region_start,
-              col = 1,
-            }
-            to = {
-              line = region_end,
-              col = math.max(vim.fn.getline(region_end):len(), 1), -- make sure col is not 0
-            }
-          else -- around mode used
-            local end_lnum = math.min(region_end + 1, last_lnum)
-            from = {
-              line = math.max(region_start - 1, 1),
-              col = 1,
-            }
-            to = {
-              line = end_lnum,
-              col = math.max(vim.fn.getline(end_lnum):len(), 1),
-            }
-          end
-
-          return { from = from, to = to }
-        end,
-      },
     },
     config = function(_, opts)
       require("mini.ai").setup(opts)
