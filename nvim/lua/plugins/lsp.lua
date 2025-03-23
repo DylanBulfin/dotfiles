@@ -34,11 +34,12 @@ return {
     keys = {
       { "<leader>l", group = "LSP" },
       { "<leader>fs", mode = { "n" }, "<CMD>Lspsaga finder<CR>", desc = "Finder" },
-      { "<leader>ca", mode = { "n" }, "<CMD>Lspsaga code_actions<CR>", desc = "Code Actions" },
+      { "<leader>ca", mode = { "n" }, "<CMD>Lspsaga code_action<CR>", desc = "Code Actions" },
       { "<leader>ld", mode = { "n" }, "<CMD>Lspsaga peek_definition<CR>", desc = "Peek Definition" },
       { "<leader>lD", mode = { "n" }, "<CMD>Lspsaga peek_type_definition<CR>", desc = "Peek Type Definition" },
       { "<leader>xn", mode = { "n" }, "<CMD>Lspsaga diagnostic_jump_next<CR>", desc = "Next Diagnostic" },
       { "<leader>xN", mode = { "n" }, "<CMD>Lspsaga diagnostic_jump_previous<CR>", desc = "Previous Diagnostic" },
+      { "<leader>e", mode = { "n" }, "<CMD>Lspsaga show_line_diagnostics<CR>", desc = "Show Diagnostic" },
       { "<leader>lt", mode = { "n" }, "<CMD>Lspsaga term_toggle<CR>", desc = "Toggle Terminal" },
       { "<leader>lh", mode = { "n" }, "<CMD>Lspsaga hover_doc<CR>", desc = "Hover Documentation" },
       { "<leader>lo", mode = { "n" }, "<CMD>Lspsaga outline<CR>", desc = "Outline" },

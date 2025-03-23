@@ -18,3 +18,7 @@ alias gl='git log'
 
 alias srn='sudo reboot now'
 alias ssn='sudo shutdown now'
+
+alias cr='cargo run'
+alias ct='cargo test'
+alias ca='cargo add'
