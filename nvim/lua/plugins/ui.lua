@@ -8,15 +8,15 @@ return {
       vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   config = function()
-  --     require("lualine").setup({
-  --       options = { theme = "catppuccin", globalstatus = true },
-  --     })
-  --   end,
-  -- },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup({
+        options = { theme = "catppuccin", globalstatus = true },
+      })
+    end,
+  },
   {
     "romgrk/barbar.nvim",
     dependencies = {
@@ -32,8 +32,8 @@ return {
       })
 
       -- Move to previous/next
-      vim.keymap.set("n", "<leader>N", "<Cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
-      vim.keymap.set("n", "<leader>n", "<Cmd>BufferNext<CR>", { desc = "Next Buffer" })
+      -- vim.keymap.set("n", "<leader>N", "<Cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
+      -- vim.keymap.set("n", "<leader>n", "<Cmd>BufferNext<CR>", { desc = "Next Buffer" })
       -- Goto buffer in position...
       vim.keymap.set("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", { desc = "Goto Buffer 1" })
       vim.keymap.set("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", { desc = "Goto Buffer 2" })
@@ -46,9 +46,9 @@ return {
       vim.keymap.set("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", { desc = "Goto Buffer 9" })
       vim.keymap.set("n", "<A-0>", "<Cmd>BufferLast<CR>", { desc = "Goto Last Buffer" })
       -- Pin/unpin buffer
-      vim.keymap.set("n", "<leader>bP", "<Cmd>BufferPin<CR>", { desc = "Pin Buffer" })
+      vim.keymap.set("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "Pin Buffer" })
       -- Pick Buffer
-      vim.keymap.set("n", "<leader>bp", "<Cmd>BufferPick<CR>", { desc = "Buffer Pick Mode" })
+      vim.keymap.set("n", "<leader>pf", "<Cmd>BufferPick<CR>", { desc = "Buffer Pick Mode" })
       -- Buffer Management
       vim.keymap.set("n", "<leader>bc", "<Cmd>BufferClose<CR>", { desc = "Close Buffer" })
       vim.keymap.set("n", "<leader>ba", "<Cmd>BufferCloseAllButPinned<CR>", { desc = "Close Buffer" })
@@ -56,7 +56,7 @@ return {
     end,
   },
 
-  { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons", opts = {} },
+  -- { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons", opts = {} },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "luukvbaal/statuscol.nvim",
