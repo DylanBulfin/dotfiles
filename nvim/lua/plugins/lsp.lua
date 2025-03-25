@@ -33,7 +33,6 @@ return {
     },
     keys = {
       { "<leader>l", group = "LSP" },
-      { "<leader>fs", mode = { "n" }, "<CMD>Lspsaga finder<CR>", desc = "Finder" },
       { "<leader>ca", mode = { "n" }, "<CMD>Lspsaga code_action<CR>", desc = "Code Actions" },
       { "<leader>ld", mode = { "n" }, "<CMD>Lspsaga peek_definition<CR>", desc = "Peek Definition" },
       { "<leader>lD", mode = { "n" }, "<CMD>Lspsaga peek_type_definition<CR>", desc = "Peek Type Definition" },
@@ -56,6 +55,7 @@ return {
       -- Go to declaration
       { "lgD", vim.lsp.buf.declaration, desc = "Goto declaration" },
       { "<leader>fS", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol search" },
+      { "<leader>fS", vim.lsp.buf.document_symbol, desc = "Workspace symbol search" },
       { "gt", vim.lsp.buf.type_definition, desc = "Goto type definition" },
     },
   },
