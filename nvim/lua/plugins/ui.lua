@@ -32,8 +32,8 @@ return {
       })
 
       -- Move to previous/next
-      -- vim.keymap.set("n", "<leader>N", "<Cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
-      -- vim.keymap.set("n", "<leader>n", "<Cmd>BufferNext<CR>", { desc = "Next Buffer" })
+      vim.keymap.set("n", "<leader>N", "<Cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
+      vim.keymap.set("n", "<leader>n", "<Cmd>BufferNext<CR>", { desc = "Next Buffer" })
       -- Goto buffer in position...
       vim.keymap.set("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", { desc = "Goto Buffer 1" })
       vim.keymap.set("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", { desc = "Goto Buffer 2" })

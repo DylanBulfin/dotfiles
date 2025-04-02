@@ -1,12 +1,12 @@
 local general = vim.api.nvim_create_augroup("General", { clear = true })
 -- By default nvim will try to continue comments on next line, very annoying to me
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
-  end,
-  group = general,
-  desc = "Disable newline comment",
-})
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   callback = function()
+--     vim.opt.formatoptions:remove({ "c", "r", "o" })
+--   end,
+--   group = general,
+--   desc = "Disable newline comment",
+-- })
 
 -- Backup current state of disable_autoformat, then set it to true
 -- It is incredibly irritating when autosave also formats but I don't want to disable entirely
