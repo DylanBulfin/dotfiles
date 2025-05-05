@@ -79,3 +79,8 @@ vim.keymap.set("n", "<leader>F", function()
 end, { desc = "Format document" })
 
 vim.keymap.set("n", "<leader>bc", "<Cmd>bd<CR>", { desc = "Close current buffer" })
+
+-- nvim-spider
+vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
+vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
+vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")

@@ -32,4 +32,8 @@ return {
       })
     end,
   },
+  {
+    "chrisgrieser/nvim-spider",
+    lazy = true,
+  },
 }
