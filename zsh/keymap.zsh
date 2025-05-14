@@ -1,6 +1,7 @@
 bindkey '^I' menu-complete
 bindkey '^F' vi-forward-char
 bindkey '^H' backward-kill-word
+bindkey '^[^?' backward-kill-word
 bindkey '^K' kill-line
 
 bindkey '^[[A' history-substring-search-up
