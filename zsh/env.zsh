@@ -13,6 +13,7 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 path+=('/opt/homebrew/bin')
 path+=('/home/dylan/.local/bin')
 path+=('/home/dylan/.cargo/bin')
-path+=('/Users/dylan/.cargo/bin')
+path+=('/Users/dylanbulfin/.cargo/bin')
+path+=('/Users/dylanbulfin/.ghcup/bin')
 
 export PATH
