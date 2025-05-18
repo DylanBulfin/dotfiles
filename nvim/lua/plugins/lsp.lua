@@ -8,7 +8,18 @@ return {
           name = "godot",
           cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
         },
-        rust_analyzer = {},
+        rust_analyzer = {
+          check = {
+            allTargets = false,
+          },
+        },
+        hls = {
+          filetypes = {
+            "haskell",
+            "lhaskell",
+            "cabal",
+          },
+        },
       },
     },
     config = function(_, opts)
