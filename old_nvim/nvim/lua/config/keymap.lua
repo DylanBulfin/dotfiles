@@ -2,12 +2,10 @@
 
 -- Misc keybindings I like
 -- Buffer management, like to have options
-vim.keymap.set("n", "<leader>[", "<Cmd>BufferPrev<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<leader>]", "<Cmd>BufferNext<CR>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "gp", "<Cmd>BufferPrev<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "gn", "<Cmd>BufferNext<CR>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<leader>n", "<Cmd>BufferNext<CR>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<leader>N", "<Cmd>BufferPrev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<leader>[", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<leader>]", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "gp", "<Cmd>bprev<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "gn", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close current buffer", silent = true })
 vim.keymap.set("n", "<leader>bs", "<Cmd>w<CR>", { desc = "Save buffer", silent = true })
@@ -20,31 +18,31 @@ vim.keymap.set({ "n", "v" }, "gI", "$", { desc = "Go to end of line" })
 
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
-	vim.cmd.normal('"+y')
+  vim.cmd.normal('"+y')
 end, { desc = "Yank to system clipboard" })
 
 -- Basically acts as an alias, <space>y can be used in place of "*y, including with motions/textobjectss
 vim.keymap.set("n", "<leader>y", function()
-	return '"+y'
+  return '"+y'
 end, { expr = true, desc = "Yank to system clipboard" })
 
 vim.keymap.set("n", "<leader>p", function()
-	vim.cmd.normal('"+p')
+  vim.cmd.normal('"+p')
 end, { desc = "Paste from system clipboard" })
 
 vim.keymap.set("n", "<leader>P", function()
-	vim.cmd.normal('"+P')
+  vim.cmd.normal('"+P')
 end, { desc = "Paste from system clipboard" })
 
 local to_one_window = function()
-	for key, value in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-		-- Only keep the first window, which is the top left one by default
-		if key ~= 1 then
-			if vim.api.nvim_win_is_valid(value) then
-				vim.api.nvim_win_close(value, true)
-			end
-		end
-	end
+  for key, value in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+    -- Only keep the first window, which is the top left one by default
+    if key ~= 1 then
+      if vim.api.nvim_win_is_valid(value) then
+        vim.api.nvim_win_close(value, true)
+      end
+    end
+  end
 end
 
 -- Add ctrl-backspace mapping in insert mode
@@ -63,11 +61,11 @@ vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "+windows" })
 
 -- In terminal mode let <Esc> do what it's supposed to
 vim.keymap.set("t", "<Esc>", function()
-	return "<C-\\><C-n>"
+  return "<C-\\><C-n>"
 end, { expr = true, desc = "Exit terminal mode" })
 
 vim.keymap.set({ "n", "v", "i" }, "<C-i>", function()
-	vim.cmd.normal("zz")
+  vim.cmd.normal("zz")
 end, { desc = "Center screen" })
 
 -- Go to indent in insert mode
@@ -77,7 +75,7 @@ vim.keymap.set("i", "<C-e>", "<Esc>cc", { desc = "Clear line" })
 vim.keymap.set({ "n", "v" }, "<leader>a", "ggVG", { desc = "Select entire buffer" })
 
 vim.keymap.set("n", "<leader>F", function()
-	require("conform").format()
+  require("conform").format()
 end, { desc = "Format document" })
 
 vim.keymap.set("n", "<leader>bc", "<Cmd>bd<CR>", { desc = "Close current buffer" })
@@ -86,32 +84,3 @@ vim.keymap.set("n", "<leader>bc", "<Cmd>bd<CR>", { desc = "Close current buffer"
 vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
 vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
 vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")
-
--- snacks picker
-vim.keymap.set({ "n", "x" }, "<leader><leader>", function()
-	require("snacks").picker.smart()
-end, { desc = "Open smart picker" })
-vim.keymap.set({ "n", "x" }, "<leader>fp", function()
-	require("snacks").picker.commands()
-end, { desc = "Open command picker" })
-vim.keymap.set({ "n", "x" }, "<leader>xD", function()
-	require("snacks").picker.diagnostics()
-end, { desc = "Open diagnostics picker" })
-vim.keymap.set({ "n", "x" }, "<leader>xd", function()
-	require("snacks").picker.diagnostics_buffer()
-end, { desc = "Open buffer diagnostics picker" })
-vim.keymap.set({ "n", "x" }, "<leader>ff", function()
-	require("snacks").picker.grep()
-end, { desc = "Open live grep" })
-vim.keymap.set({ "n", "x" }, "<leader>fs", function()
-	require("snacks").picker.lsp_symbols()
-end, { desc = "Open LSP symbol picker" })
-
--- barbar
-vim.keymap.set({ "n", "x" }, "<leader>fw", "<Cmd>BufferPick<CR>", { desc = "Pick a buffer to jump to" })
-vim.keymap.set({ "n", "x" }, "<leader>fd", "<Cmd>BufferPickDelete<CR>", { desc = "Pick a buffer to close" })
-
--- hop
-vim.keymap.set({ "n", "x", "o" }, "sn", "<Cmd>HopWord<CR>")
-vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar2<CR>")
-vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar1<CR>")

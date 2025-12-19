@@ -8,6 +8,7 @@ opt.cursorline = true
 opt.confirm = true
 opt.tabstop = 2
 opt.shiftwidth = 2
+opt.ignorecase = true
 opt.smartcase = true
 opt.smartindent = true
 opt.splitright = true
@@ -15,12 +16,10 @@ opt.splitbelow = true
 opt.list = true
 opt.virtualedit = "block"
 opt.wrap = true
-opt.signcolumn = "no"
-opt.ignorecase = true
 opt.laststatus = 3
 opt.showmode = false
 opt.background = "dark"
-vim.opt.listchars = {
+opt.listchars = {
   space = "⋅",
   -- eol = "↴",
   tab = "▎_",
@@ -29,3 +28,6 @@ vim.opt.listchars = {
   precedes = "❮",
   nbsp = "",
 }
+
+vim.cmd.colorscheme("catppuccin")
+
