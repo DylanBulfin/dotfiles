@@ -14,14 +14,18 @@ else
   set shortmess=aoO
 endif
 badd +14 ~/repos/dotfiles/nvim/lua/config/opts.lua
-badd +54 ~/repos/dotfiles/nvim/lua/config/keymap.lua
-badd +4 ~/repos/dotfiles/nvim/lua/plugins/theme/catppuccin.lua
-badd +3 lua/plugins/nav/hop.lua
+badd +21 ~/repos/dotfiles/nvim/lua/config/keymap.lua
+badd +6 ~/repos/dotfiles/nvim/lua/plugins/theme/catppuccin.lua
+badd +8 lua/plugins/nav/hop.lua
+badd +2 ~/repos/dotfiles/nvim/lua/plugins/editing/mini.lua
+badd +1 ~/repos/dotfiles/nvim/lua/plugins/nav/spider.lua
+badd +1 ~/repos/dotfiles/nvim/lua/plugins/treesitter.lua
+badd +0 ~/repos/dotfiles/nvim/lua/config/treesitter.lua
 argglobal
 %argdel
-edit lua/plugins/nav/hop.lua
+edit ~/repos/dotfiles/nvim/lua/config/treesitter.lua
 argglobal
-balt ~/repos/dotfiles/nvim/lua/config/keymap.lua
+balt ~/repos/dotfiles/nvim/lua/plugins/treesitter.lua
 setlocal foldmethod=manual
 setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
 setlocal foldmarker={{{,}}}
@@ -32,12 +36,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 3 - ((2 * winheight(0) + 27) / 54)
+let s:l = 1 - ((0 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
-normal! 017|
+keepjumps 1
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
