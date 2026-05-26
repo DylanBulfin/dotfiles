@@ -9,7 +9,7 @@ return {
 		},
 		opts = {
 			keymap = {
-				preset = "super-tab",
+				preset = "enter",
 			},
 			completion = {
 				documentation = {

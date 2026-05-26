@@ -18,6 +18,9 @@ vim.keymap.set({ "n", "v" }, "gm", "^", { desc = "Go to start of line (non-white
 vim.keymap.set({ "n", "v" }, "gi", "$", { desc = "Go to end of line" })
 vim.keymap.set({ "n", "v" }, "gI", "$", { desc = "Go to end of line" })
 
+-- Quit window
+vim.keymap.set("n", "<leader>qq", "<Cmd>q<CR>", { desc = "Close window" })
+
 -- Copy paste from system clipboard
 vim.keymap.set("v", "<leader>y", function()
 	vim.cmd.normal('"+y')
@@ -46,6 +49,17 @@ local to_one_window = function()
 		end
 	end
 end
+
+-- LSP-related bindings
+vim.keymap.set("n", "<leader>ca", function() 
+  vim.lsp.buf.code_action() 
+end, {desc = "Code Action"})
+vim.keymap.set('n', '<leader>e', function() 
+  vim.diagnostic.open_float()
+end, { desc="Show errors", silent=true })
+vim.keymap.set('n', '<leader>rn', function() 
+  vim.lsp.buf.rename()
+end, { desc="Rename", silent=true })
 
 -- Add ctrl-backspace mapping in insert mode
 vim.keymap.set("i", "<A-BS>", "<C-w>", { desc = "Delete previous word" })
